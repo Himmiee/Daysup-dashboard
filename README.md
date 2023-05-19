@@ -37,7 +37,7 @@ Make sure you have the following installed before setting up the project:
    npm start
    ```
 
-   The server should now be running on `http://localhost:<port>`, where `3050 ` is the port specified in your environment variables or the default port.
+   The server should now be running on `http://localhost:3050`, where `3050 ` is the port specified in your environment variables or the default port.
 
 ## Development
 
