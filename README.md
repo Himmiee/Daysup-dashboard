@@ -6,15 +6,15 @@ This repository contains the backend codebase for a dashboard application built 
 
 Make sure you have the following installed before setting up the project:
 
-- Node.js (version X.X.X)
-- NPM (version X.X.X)
+- Node.js (version 16.16.0)
+- NPM (version 9.6.6)
 
 ## Getting Started
 
 1. Clone this repository to your local machine:
 
    ```shell
-   git clone <repository-url>
+   git clone https://github.com/Himmiee/Daysup-dashboard.git
    ```
 
 2. Install the project dependencies:
