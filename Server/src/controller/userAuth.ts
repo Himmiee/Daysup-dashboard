@@ -1,36 +1,79 @@
 import express from "express";
-import { createUser, getUsersByMail } from "../models/authSchema";
+import { createUserOrAdmin, getUsersByMail } from "../models/authSchema";
 import { random, authentication } from "../helpers";
+import { verify } from "../helpers";
+import { responseHandler } from "../helpers/errorHandler";
 
-export const Register = async (req: express.Request, res: express.Response) => {
-    try {
-      
-        const {name, email, regNumber, password} = req.body
+export const RegisterUser = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const { name, email, password } = req.body;
 
-        if(!name || !email || !password || !regNumber) {
-           return res.sendStatus(400)
-        }
+    if (!name || !email || !password) {
+      return res.status(400).send("Invalid credentials");
+    }
 
-        const existingUser = await getUsersByMail(email)
+    const existingUser = await getUsersByMail(email);
 
-        if (existingUser) {
-           return res.sendStatus(400)
-        }
+    if (existingUser) {
+      return res.status(400).send("User already exists");
+    }
 
-       const salt = random()
-       const user = await createUser({
+    const salt = random();
+    const user = await createUserOrAdmin(
+      {
         name,
-        regNumber,
         email,
         authentication: {
           password: authentication(salt, password),
           salt,
         },
-       })
+      },
+      false
+    );
 
-       return res.status(200).json(user).end()
-    } catch (err) {
-       return res.sendStatus(400)
+    return res.status(200).json(user).end();
+  } catch (err) {
+    return res.sendStatus(400);
+  }
+};
+
+export const registerAdmin = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const { name, email, password,  } = req.body;
+
+    if (!name || !email || !password) {
+      return res.status(400).send("Invalid credentials");
     }
 
-}
+    const existingUser = await getUsersByMail(email);
+
+    if (existingUser) {
+      return res.status(400).send("User already exists");
+    }
+
+    const salt = random();
+    const admin = await createUserOrAdmin(
+      {
+        name,
+        email,
+        authentication: {
+          password: authentication(salt, password),
+          salt,
+        },
+        is_admin: true,
+      },
+      false
+    );
+ 
+    return res.status(200).json(admin).end();
+  } catch (err) {
+    return res.sendStatus(400);
+  }
+};
+

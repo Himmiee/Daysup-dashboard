@@ -1,24 +1,43 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema({
+type authenticationType = {
+  password: string;
+  salt: string;
+  sessionToken: string;
+}
+
+type UserModelType = {
+  name: string;
+  regNumber: string;
+  email: string;
+  authentication:authenticationType,
+  is_admin: boolean;
+  is_active: boolean;
+}
+
+
+
+const UserSchema = new mongoose.Schema<UserModelType>({
   name: { type: String, required: true },
-  regNumber: { type: String, required: true },
+  regNumber: {type: String},
   email: { type: String, required: true },
   authentication: {
-    password: { type: String, required: true, select: false },
+    password: { type: String, required: true, select: false, minlength:6 },
     salt: { type: String, select: false },
     sessionToken: { type: String, select: false },
   },
+  is_admin: { type: Boolean, default: false , select: false },
+  is_active: { type: Boolean, default: true , select: false },
 });
 
-export const UserModel = mongoose.model("UserSchema", UserSchema);
+export const UserModel = mongoose.model("UserAuthSchema", UserSchema);
 export const getUsers = () => UserModel.find();
 export const getUsersById = (id: string) => UserModel.findById(id);
 export const getUsersByMail = (email: string) => UserModel.findOne({ email });
 export const getUserByRegNumber = (regNumber: string) =>
   UserModel.findOne({ regNumber });
-export const createUser = (values: Record<string, any>) =>
-  new UserModel(values).save().then((user) => user.toObject());
+export const createUserOrAdmin = (values: Record<string, any>, is_admin: boolean) =>
+  new UserModel(values,is_admin ).save().then((user) => user.toObject());
 export const updateUserById = (id: string, values: Record<string, any>) =>
   UserModel.findByIdAndUpdate({ id, values });
 export const deleteUserById = (id: string) =>

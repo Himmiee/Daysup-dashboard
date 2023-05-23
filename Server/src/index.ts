@@ -18,6 +18,7 @@ const URI = process.env.DB_CONNECT
 mongoose.connect(URI)
 
 app.use(compression())
+app.use(cookieParser())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
