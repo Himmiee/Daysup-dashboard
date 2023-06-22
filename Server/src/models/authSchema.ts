@@ -4,6 +4,7 @@ type authenticationType = {
   password: string;
   salt: string;
   sessionToken: string;
+  accessToken: string;
 }
 
 type UserModelType = {
@@ -25,6 +26,7 @@ const UserSchema = new mongoose.Schema<UserModelType>({
     password: { type: String, required: true, select: false, minlength:6 },
     salt: { type: String, select: false },
     sessionToken: { type: String, select: false },
+    accessToken: { type: String, select: false},
   },
   is_admin: { type: Boolean, default: false , select: false },
   is_active: { type: Boolean, default: true , select: false },
@@ -33,6 +35,9 @@ const UserSchema = new mongoose.Schema<UserModelType>({
 export const UserModel = mongoose.model("UserAuthSchema", UserSchema);
 export const getUsers = () => UserModel.find();
 export const getUsersById = (id: string) => UserModel.findById(id);
+// export const getAdmin = (is_admin: boolean) => UserModel.find({ is_admin: true})
+export const getUsersByAccessToken = (accessToken: string) => UserModel.findOne({"authentication.accessToken" : accessToken})
+export const getUsersBySessionToken = (sessionToken: string) => UserModel.findOne({"authentication.sessionToken" : sessionToken})
 export const getUsersByMail = (email: string) => UserModel.findOne({ email });
 export const getUserByRegNumber = (regNumber: string) =>
   UserModel.findOne({ regNumber });
