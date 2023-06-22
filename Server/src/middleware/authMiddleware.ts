@@ -37,6 +37,12 @@ export const isAuthenticated = async (
   }
 };
 
+
+export const verify = (email: string) => {
+  const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY, { expiresIn: "60m" });
+  return token
+};
+
 export const verifyToken = async (
   req: express.Request,
   res: express.Response,
@@ -87,18 +93,20 @@ export const verifyAdmin = async (
   const accessToken = req.headers.authorization.split(" ")[1];
 
   try {
-  let user = await getUsersByAccessToken(accessToken)
-  if (!user.is_admin === true) {
+  let user = await getUsersByAccessToken(accessToken).select("+is_admin");
+  if (user.is_admin === false) {
     result = {
       error: true,
-      message : "Access token not found",
+      message : "No Permission to access",
     }
-    res.sendStatus(400)
+    res.send(result)
+  } else {
+    result = jwt.verify(accessToken, process.env.JWT_SECRET_KEY)
+    res.send("verified")
   }
-  
 
-  result = jwt.verify(accessToken, process.env.JWT_SECRET_KEY)
- 
+
+    
   next()
 
   } catch (err) {

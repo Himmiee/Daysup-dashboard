@@ -1,7 +1,7 @@
 import express from "express";
 import { createUserOrAdmin, getUsersByMail } from "../models/authSchema";
 import { random, authentication } from "../helpers";
-import { verify } from "../helpers";
+import { verify } from "../middleware/authMiddleware";
 // import { protectedRoute } from "../helpers";
 import { responseHandler } from "../helpers/errorHandler";
 

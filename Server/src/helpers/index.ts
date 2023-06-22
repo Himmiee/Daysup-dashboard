@@ -1,9 +1,6 @@
 import crypto from "crypto";
 import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
-import express  from "express";
-import { responseHandler } from "./errorHandler";
-import { getUsersById } from "../models/authSchema";
+
 
 dotenv.config();
 
@@ -17,10 +14,7 @@ export const authentication = (salt: string, password: string) => {
     .digest("hex");
 };
 
-export const verify = (email: string) => {
-  const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY, { expiresIn: "60m" });
-  return token
-};
+
 
 
 
