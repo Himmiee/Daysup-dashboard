@@ -4,6 +4,6 @@ import { isAuthenticated , verifyToken, verifyAdmin} from '../middleware/authMid
 
 export default (router: express.Router) => {
     router.get('/users',verifyAdmin, getAllUsers)
-    router.delete('/admin/delete/:id',deleteUser)
+    router.delete('/admin/delete/:id',verifyAdmin,deleteUser)
 
 }

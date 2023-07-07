@@ -6,7 +6,7 @@ import {
   getUsersById,
   getUsersByMail,
   getUsersBySessionToken,
-  getUsersByAccessToken
+  getUsersByAccessToken,
 } from "../models/authSchema";
 
 dotenv.config();
@@ -37,10 +37,11 @@ export const isAuthenticated = async (
   }
 };
 
-
 export const verify = (email: string) => {
-  const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY, { expiresIn: "60m" });
-  return token
+  const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY, {
+    expiresIn: "60m",
+  });
+  return token;
 };
 
 export const verifyToken = async (
@@ -58,25 +59,23 @@ export const verifyToken = async (
   const accessToken = req.headers.authorization.split(" ")[1];
 
   try {
-  let user = await getUsersByAccessToken(accessToken)
-  if (!user) {
-    result = {
-      error: true,
-      message : "Access token not found",
+    let user = await getUsersByAccessToken(accessToken);
+    if (!user) {
+      result = {
+        error: true,
+        message: "Access token not found",
+      };
+      res.sendStatus(400);
     }
-    res.sendStatus(400)
-  }
 
-  result = jwt.verify(accessToken, process.env.JWT_SECRET_KEY)
- 
-  next()
+    result = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
+    if (result) return res.status(200).send("successful");
 
+    next();
   } catch (err) {
-    res.send(err)
+    res.send(err);
   }
 };
-
-
 
 export const verifyAdmin = async (
   req: express.Request,
@@ -93,23 +92,20 @@ export const verifyAdmin = async (
   const accessToken = req.headers.authorization.split(" ")[1];
 
   try {
-  let user = await getUsersByAccessToken(accessToken).select("+is_admin");
-  if (user.is_admin === false) {
-    result = {
-      error: true,
-      message : "No Permission to access",
+    let user = await getUsersByAccessToken(accessToken).select("+is_admin");
+    if (user.is_admin === false) {
+      result = {
+        error: true,
+        message: "No Permission to access",
+      };
+      res.send(result);
+    } else {
+      result = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
+      res.status(200);
     }
-    res.send(result)
-  } else {
-    result = jwt.verify(accessToken, process.env.JWT_SECRET_KEY)
-    res.send("verified")
-  }
 
-
-    
-  next()
-
+    next();
   } catch (err) {
-    res.send("omo")
+    res.send("not authorised");
   }
 };

@@ -35,12 +35,15 @@ const UserSchema = new mongoose.Schema<UserModelType>({
 export const UserModel = mongoose.model("UserAuthSchema", UserSchema);
 export const getUsers = () => UserModel.find();
 export const getUsersById = (id: string) => UserModel.findById(id);
-// export const getAdmin = (is_admin: boolean) => UserModel.find({ is_admin: true})
+export const getAdmin = (is_admin: boolean) => UserModel.find({ is_admin: true})
 export const getUsersByAccessToken = (accessToken: string) => UserModel.findOne({"authentication.accessToken" : accessToken})
 export const getUsersBySessionToken = (sessionToken: string) => UserModel.findOne({"authentication.sessionToken" : sessionToken})
 export const getUsersByMail = (email: string) => UserModel.findOne({ email });
 export const getUserByRegNumber = (regNumber: string) =>
   UserModel.findOne({ regNumber });
+export const updatedUser = (email:string, password:string) => {
+  UserModel.findOneAndUpdate({ email, password})
+}
 export const createUserOrAdmin = (values: Record<string, any>, is_admin: boolean) =>
   new UserModel(values,is_admin ).save().then((user) => user.toObject());
 export const updateUserById = (id: string, values: Record<string, any>) =>

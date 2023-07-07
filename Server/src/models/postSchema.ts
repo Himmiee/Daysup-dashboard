@@ -4,16 +4,27 @@ type postType = {
   regNumber: string;
   faculty: string;
   passStatus: boolean;
-  timeTable: File;
+  file: string;
   createdAt: string;
+  updatedAt: string;
 };
 
 export const postSchema = new mongoose.Schema<postType>({
   regNumber: { type: String, required: true },
   faculty: { type: String, required: true },
   passStatus: { type: Boolean, required: false, default: false },
-  timeTable: { type: File, required: false },
-  createdAt: { type: String, default: Date.now().toString() },
+  file: { type: String, required: false },
+  createdAt: { type: String, default: Date.now.toString()},
+  updatedAt: { type: String, default: Date.now.toString()},
+});
+
+postSchema.pre('save', function(next){
+  const now = new Date().toISOString();
+  this.updatedAt = now;
+  if(!this.createdAt) {
+      this.createdAt = now
+  }
+  next();
 });
 
 export const PostModel = mongoose.model("PostSchema", postSchema);
