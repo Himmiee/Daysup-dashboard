@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 const InputComponent = (props) => {
-  const { label, type, name, className } = props;
+  const { label, type, name, className, handleChange } = props;
   const [value, setValue] = useState("");
   const [pwdState, setPwdState] = useState(false);
   const inputRef = useRef(null);
@@ -11,6 +11,7 @@ const InputComponent = (props) => {
     <div className="flex relative">
       <input
         type={type}
+        onChange={handleChange}
         ref={inputRef}
         placeholder={name}
         className="border-grey-600 border-[1px] h-8 w-[350px] sm:w-[415px] text-black my-2 px-2  rounded-lg text-[11px] font-medium inter"

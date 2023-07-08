@@ -1,10 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ItemContext } from "../../context/store";
 import InputComponent from "../../components/inputComponent";
 import Button from "../../components/Button";
 
 const LoginComponent = () => {
+  const { email, setEmail, password, setPassword } = ItemContext();
+  const handleClick = () => {
+    console.log("dey play.");
+  };
   return (
     <section className="grid lg:flex max-h-full inter">
       <div className="lg:w-1/2 ">
@@ -20,31 +25,50 @@ const LoginComponent = () => {
             <div className="wrap mt-3">
               <label className="font-bold ml-1 text-[12px]">
                 Email:
-                <InputComponent name="email" className="" />
+                <InputComponent
+                  handleChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  name="email"
+                  className=""
+                />
               </label>
               <label className="font-bold ml-1 text-[12px]">
                 Password:
-                <InputComponent name="password" type="password" className="" />
+                <InputComponent
+                  handleChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                  name="password"
+                  type="password"
+                  className=""
+                />
               </label>
             </div>
           </div>
           <div className="my-3 flex justify-center lg:justify-start">
             <Button
+              handleClick={handleClick}
+              disabled={
+                !email ||
+                !password ||
+                !email.includes("@") ||
+                !email.includes(".")
+              }
               title="SignIn"
               className="bg-[#3D3CC6]  w-[350px] sm:w-[415px] rounded-lg h-9 "
             />
           </div>
           <p className="text-[12px] cursor-pointer flex justify-center lg:justify-start ">
             Don't have an account.?.{" "}
-         <Link to={"/register"}>
-         <span
-              className="italic font-bold
+            <Link to={"/register"}>
+              <span
+                className="italic font-bold
            text-[#3D3CC6]"
-            >
-                
-              SignUp
-            </span>
-         </Link>
+              >
+                SignUp
+              </span>
+            </Link>
           </p>
         </div>
       </div>

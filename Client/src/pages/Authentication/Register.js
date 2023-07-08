@@ -1,10 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ItemContext } from "../../context/store";
 import InputComponent from "../../components/inputComponent";
 import Button from "../../components/Button";
 
 const RegisterComponent = () => {
+  const {
+    name,
+    setName,
+    email,
+    setEmail,
+    RegNumber,
+    setRegNumber,
+    password,
+    setPassword,
+  } = ItemContext();
+  const [err, setErr] = useState("");
+  useEffect(() => {}, [email]);
+  const handleClick = () => {
+    console.log("dey play.");
+  };
   return (
     <section className="grid lg:flex max-h-full inter">
       <div className="lg:w-1/2 relative">
@@ -51,30 +67,69 @@ const RegisterComponent = () => {
             <div className="wrap mt-3">
               <label className="font-bold ml-1 text-[12px]">
                 Name:
-                <InputComponent name="name" className="" />
+                <InputComponent
+                  handleChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                  name="name"
+                  className=""
+                />
               </label>
               <div className="more -ml-1 my-2 flex w-[320px] sm:w-[405px] gap-4 sm:gap-2">
                 <label className="font-bold ml-1 text-[12px] w-1/2">
                   Email:
-                  <InputComponent name="email" className="" />
+                  <InputComponent
+                    handleChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                    name="email"
+                    className=""
+                  />
                 </label>
                 <label className="font-bold ml-1 text-[12px] w-1/2">
                   RegNum:
-                  <InputComponent name="regnumber" className="" />
+                  <InputComponent
+                    handleChange={(e) => {
+                      setRegNumber(e.target.value);
+                    }}
+                    name="regnumber"
+                    className=""
+                  />
                 </label>
               </div>
               <label className="font-bold ml-1 text-[12px]">
                 Password:
-                <InputComponent name="password" type="password" className="" />
+                <InputComponent
+                  handleChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                  name="password"
+                  type="password"
+                  className=""
+                />
               </label>
             </div>
           </div>
           <div className="my-3 flex justify-center lg:justify-start">
             <Button
+              handleClick={handleClick}
               title="SignUp"
-              className="bg-[#3D3CC6]  w-[350px] sm:w-[415px] rounded-lg h-9 "
+              disabled={
+                !name ||
+                !RegNumber ||
+                !email ||
+                !password||
+                !email.includes("@") ||
+                !email.includes(".")
+              }
+              className="bg-[#3D3CC6] disabled:bg-[#878888]  w-[350px] sm:w-[415px] rounded-lg h-9 "
             />
           </div>
+          {/* {!(email.includes("@") || email.includes(".")) && (
+            <div className="flex justify-center text-[10px] text-red-500">
+              <p>Incorrect email format.</p>
+            </div>
+          )} */}
           <p className="text-[12px] cursor-pointer flex justify-center lg:justify-start ">
             Already own an account.?.{" "}
             <Link to={"/"}>
