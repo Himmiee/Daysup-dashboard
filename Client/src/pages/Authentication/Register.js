@@ -125,7 +125,7 @@ const RegisterComponent = () => {
                 !email.includes("@") ||
                 !email.includes(".")
               }
-              className="bg-[#3D3CC6] disabled:bg-[#878888]  w-[350px] sm:w-[415px] rounded-lg h-9 "
+              className="bg-[#3D3CC6] disabled:bg-[#878888bd]  w-[350px] sm:w-[415px] rounded-lg h-9 "
             />
           </div>
           {/* {!(email.includes("@") || email.includes(".")) && (

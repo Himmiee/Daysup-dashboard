@@ -14,7 +14,7 @@ const Dashboard = () => {
           <div className="logo">
             <img
               src="../purple.png"
-              className=" lg:w-44 hidden lg:flex h-24 -ml-2 bg-white mt-2 mb-6"
+              className=" lg:w-48 hidden lg:flex h-24 -ml-2 bg-white mt-2 mb-6"
               alt="logo"
             />
             <img

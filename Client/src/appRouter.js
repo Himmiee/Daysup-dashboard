@@ -2,13 +2,13 @@ import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ItemContext } from "./context/store";
 import Dashboard from "./pages/Dashboard/dashboard";
+import NavComponent from "./pages/Dashboard/navbar";
+import LoaderComponent from "./components/loader";
+import RegisterComponent from "./pages/Authentication/Register";
+import LoginComponent from "./pages/Authentication/Login";
 
 const AppRouter = () => {
   const { showNav, setShowNav } = ItemContext();
-  const RegisterComponent = lazy(() =>
-    import("./pages/Authentication/Register")
-  );
-  const LoginComponent = lazy(() => import("./pages/Authentication/Login"));
   const EventComponent = lazy(() => import("./pages/others/event"));
   const MainComponent = lazy(() => import("./pages/others/main"));
   const UserComponent = lazy(() => import("./pages/others/Community"));
@@ -20,7 +20,7 @@ const AppRouter = () => {
     <section>
       <div className={showNav ? "flex" : ""}>
         {showNav && <Dashboard />}
-        <Suspense fallback={"test"}>
+        <Suspense fallback={<LoaderComponent />}>
           <Routes>
             <Route path="/" element={<LoginComponent />} />
             <Route path="/register" element={<RegisterComponent />} />

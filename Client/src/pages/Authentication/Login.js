@@ -8,7 +8,7 @@ import Button from "../../components/Button";
 const LoginComponent = () => {
   const { email, setEmail, password, setPassword,setShowNav } = ItemContext();
   const handleClick = () => {
-    console.log("dey play.");
+    console.log("dey play.",email, password);
   };
   useEffect(() => {
     setShowNav(false)
@@ -59,7 +59,7 @@ const LoginComponent = () => {
                 !email.includes(".")
               }
               title="SignIn"
-              className="bg-[#3D3CC6]  w-[350px] sm:w-[415px] rounded-lg h-9 "
+              className="bg-[#3D3CC6] disabled:bg-[#878888bd]  w-[350px] sm:w-[415px] rounded-lg h-9 "
             />
           </div>
           <p className="text-[12px] cursor-pointer flex justify-center lg:justify-start ">
