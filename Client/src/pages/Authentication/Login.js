@@ -6,10 +6,13 @@ import InputComponent from "../../components/inputComponent";
 import Button from "../../components/Button";
 
 const LoginComponent = () => {
-  const { email, setEmail, password, setPassword } = ItemContext();
+  const { email, setEmail, password, setPassword,setShowNav } = ItemContext();
   const handleClick = () => {
     console.log("dey play.");
   };
+  useEffect(() => {
+    setShowNav(false)
+  },[])
   return (
     <section className="grid lg:flex max-h-full inter">
       <div className="lg:w-1/2 ">

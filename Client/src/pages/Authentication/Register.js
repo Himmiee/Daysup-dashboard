@@ -15,9 +15,12 @@ const RegisterComponent = () => {
     setRegNumber,
     password,
     setPassword,
+    setShowNav
   } = ItemContext();
   const [err, setErr] = useState("");
-  useEffect(() => {}, [email]);
+  useEffect(() => {
+    setShowNav(false)
+  },[])
   const handleClick = () => {
     console.log("dey play.");
   };
