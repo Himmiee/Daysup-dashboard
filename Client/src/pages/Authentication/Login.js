@@ -15,7 +15,7 @@ const LoginComponent = () => {
   },[])
   return (
     <section className="grid lg:flex max-h-full inter">
-      <div className="lg:w-1/2 ">
+      <div className="lg:w-1/2">
         <div className="logo absolute top-[30%] sm:top-[25%] lg:opacity-100 lg:relative lg:top-1 lg:left-0 lg:flex lg:justify-start  sm:opacity-50 opacity-20 sm:left-[48%] flex ml-14 lg:mb-3 lg:mt-12 ">
           <img src="../bare.png" className=" lg:w-24 w-96 lg:h-18" alt="" />
         </div>
@@ -59,7 +59,7 @@ const LoginComponent = () => {
                 !email.includes(".")
               }
               title="SignIn"
-              className="bg-[#3D3CC6] disabled:bg-[#878888bd]  w-[350px] sm:w-[415px] rounded-lg h-9 "
+              className="bg-[#3D3CC6] disabled:text-gray-200 text-white disabled:bg-[#878888bd]  w-[350px] sm:w-[415px] rounded-lg h-9 "
             />
           </div>
           <p className="text-[12px] cursor-pointer flex justify-center lg:justify-start ">

@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { ItemContext } from "../../context/store";
+import NavComponent from "../Dashboard/navbar";
 
 const SettingsComponent = () => {
-  const { setShowNav } = ItemContext();
-  useEffect(() =>{
+  const { setShowNav, setShowHeader, showHeader } = ItemContext();
+  useEffect(() => {
     setShowNav(true);
-  },[])
+    setShowHeader(true);
+  }, []);
   return (
-    <div className="sm:w-[88%] lg:w-[82%] bg-[#f3f3f3]">
+    <section className="sm:w-[90%] border-l-[1px] border-gray-200 w-[100%] inter lg:w-[82%] bg-[#ffffff] ">
+      {showHeader && <NavComponent />}
       <h1>Settings works duhhh...</h1>
-    </div>
+    </section>
   );
 };
 

@@ -1,12 +1,14 @@
 import { React, useState, useEffect } from "react";
 import { Menu } from "../others/menu";
 import { HiLogout } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Dashboard = () => {
   const [data, useData] = useState(Menu);
-  const [active, setActive] = useState(0);
+  const [it, setIt] = useState(null);
+  const [active, setActive] = useState(1);
   const [icon, setIcon] = useState(false);
+
   return (
     <section className=" max-h-full">
       <div className="sm:flex sm:h-[100vh]">
@@ -19,25 +21,23 @@ const Dashboard = () => {
             />
             <img
               src="../bare.png"
-              className="w-28 -ml-2 hidden sm:flex
-             lg:hidden h-18 mt-5 mb-[30px]"
+              className="w-24 -ml-1 hidden sm:flex
+             lg:hidden h-18 mt-5 mb-11"
               alt="logo"
             />
           </div>
           <ul className=" sm:relative sm:ml-5 flex justify-around sm:flex-col">
-            {data.map((item, idx) => {
+            {data?.map((item, idx) => {
               return (
                 <Link
+                  key={idx}
                   to={item?.link}
                   onClick={() => {
                     setActive(idx);
                     setIcon(!icon);
                   }}
                 >
-                  <li
-                    className="flex gap-5 sm:my-2 text-center cursor-pointer"
-                    key={idx}
-                  >
+                  <li className="flex gap-5 sm:my-2 text-center cursor-pointer">
                     <div
                       className={
                         active === idx

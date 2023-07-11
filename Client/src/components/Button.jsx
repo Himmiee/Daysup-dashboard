@@ -8,7 +8,7 @@ const Button = (props) => {
       onClick={handleClick}
       disabled={disabled}
     >
-      <p className="text-white text-[12px] font-bold text-center">{title}</p>
+      <p className="text-[12px] font-bold text-center">{title}</p>
     </button>
   );
 };

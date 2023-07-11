@@ -7,6 +7,7 @@ const Context = ({ children }) => {
   const [RegNumber, setRegNumber] = useState("");
   const [password, setPassword] = useState("");
   const [showNav, setShowNav] = useState(false)
+  const [showHeader, setShowHeader] = useState(false)
   return (
     <stateManagement.Provider
       value={{
@@ -19,7 +20,9 @@ const Context = ({ children }) => {
         password,
         setPassword,
         showNav,
-        setShowNav
+        setShowNav,
+        showHeader,
+        setShowHeader
       }}
     >
       {children}

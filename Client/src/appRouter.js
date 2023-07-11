@@ -8,7 +8,7 @@ import RegisterComponent from "./pages/Authentication/Register";
 import LoginComponent from "./pages/Authentication/Login";
 
 const AppRouter = () => {
-  const { showNav, setShowNav } = ItemContext();
+  const { showNav, setShowNav, showHeader, setShowHeader } = ItemContext();
   const EventComponent = lazy(() => import("./pages/others/event"));
   const MainComponent = lazy(() => import("./pages/others/main"));
   const UserComponent = lazy(() => import("./pages/others/Community"));
@@ -18,19 +18,22 @@ const AppRouter = () => {
   const SettingsComponent = lazy(() => import("./pages/others/settings"));
   return (
     <section>
-      <div className={showNav ? "flex" : ""}>
-        {showNav && <Dashboard />}
-        <Suspense fallback={<LoaderComponent />}>
-          <Routes>
-            <Route path="/" element={<LoginComponent />} />
-            <Route path="/register" element={<RegisterComponent />} />
-            <Route path="/event" element={<EventComponent />} />
-            <Route path="/user" element={<UserComponent />} />
-            <Route path="/main" element={<MainComponent />} />
-            <Route path="/notification" element={<NotificationComponent />} />
-            <Route path="/settings" element={<SettingsComponent />} />
-          </Routes>
-        </Suspense>
+      <div className="">
+        <div className={showNav ? "flex" : ""}>
+          {showNav && <Dashboard />}
+
+          <Suspense fallback={<LoaderComponent />}>
+            <Routes>
+              <Route path="/" element={<LoginComponent />} />
+              <Route path="/register" element={<RegisterComponent />} />
+              <Route path="/event" element={<EventComponent />} />
+              <Route path="/user" element={<UserComponent />} />
+              <Route path="/main" element={<MainComponent />} />
+              <Route path="/notification" element={<NotificationComponent />} />
+              <Route path="/settings" element={<SettingsComponent />} />
+            </Routes>
+          </Suspense>
+        </div>
       </div>
     </section>
   );

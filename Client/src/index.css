@@ -7,3 +7,6 @@ body{
     font-family: 'Inter', sans-serif;
 }
 
+.tbl::-webkit-scrollbar{
+    display: none;
+  }
