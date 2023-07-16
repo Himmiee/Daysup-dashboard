@@ -6,7 +6,7 @@ import compression from "compression";
 import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
-import router from "./src/router";
+import router from "./router";
 import { emailTemplate } from "helpers/template";
 
 const app = express();

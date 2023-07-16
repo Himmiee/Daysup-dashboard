@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
+  "type": "module",
   "scripts": {
     "start": "nodemon index.ts",
-    "type": "module",
     "test": "mocha"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
