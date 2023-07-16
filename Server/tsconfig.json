@@ -7,5 +7,5 @@
     "sourceMap": true,
     "noImplicitAny": true
   },
-  "include": ["src/**/*", "src/middleware"]
+  "include": ["src/**/*", "src/middleware", "index.ts"]
 }
