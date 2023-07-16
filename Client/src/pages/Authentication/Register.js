@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ItemContext } from "../../context/store";
 import InputComponent from "../../components/inputComponent";
@@ -11,18 +11,21 @@ const RegisterComponent = () => {
     setName,
     email,
     setEmail,
-    RegNumber,
+    regNumber,
     setRegNumber,
     password,
     setPassword,
-    setShowNav
+    setShowNav,
+    err,
+    RegisterUser,
   } = ItemContext();
-  const [err, setErr] = useState("");
+
   useEffect(() => {
-    setShowNav(false)
-  },[])
+    setShowNav(false);
+  }, []);
   const handleClick = () => {
     console.log("dey play.");
+    RegisterUser();
   };
   return (
     <section className="grid lg:flex max-h-full inter">
@@ -66,6 +69,7 @@ const RegisterComponent = () => {
             Student Information should be filled with student's registration
             <br /> details and info accordingly.{" "}
           </p>
+
           <div className="flex justify-center lg:justify-start">
             <div className="wrap mt-3">
               <label className="font-bold ml-1 text-[12px]">
@@ -119,9 +123,9 @@ const RegisterComponent = () => {
               title="SignUp"
               disabled={
                 !name ||
-                !RegNumber ||
+                !regNumber ||
                 !email ||
-                !password||
+                !password ||
                 !email.includes("@") ||
                 !email.includes(".")
               }
@@ -133,6 +137,11 @@ const RegisterComponent = () => {
               <p>Incorrect email format.</p>
             </div>
           )} */}
+          {err && (
+            <p className="flex justify-center text-red-400 text-[10px]">
+              {err}
+            </p>
+          )}
           <p className="text-[12px] cursor-pointer flex justify-center lg:justify-start ">
             Already own an account.?.{" "}
             <Link to={"/"}>

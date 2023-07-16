@@ -1,6 +1,6 @@
 const Button = (props) => {
-  const { title, type , handleClick, className, disabled} = props;
- 
+  const { title, type, handleClick, className, disabled } = props;
+
   return (
     <button
       type={type}

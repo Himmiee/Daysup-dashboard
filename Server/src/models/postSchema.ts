@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 type postType = {
   regNumber: string;
   faculty: string;
-  passStatus: boolean;
+  status: boolean;
   file: string;
   createdAt: string;
   updatedAt: string;
@@ -12,7 +12,7 @@ type postType = {
 export const postSchema = new mongoose.Schema<postType>({
   regNumber: { type: String, required: true },
   faculty: { type: String, required: true },
-  passStatus: { type: Boolean, required: false, default: false },
+  status: { type: Boolean, required: false, default: false },
   file: { type: String, required: false },
   createdAt: { type: String, default: Date.now.toString()},
   updatedAt: { type: String, default: Date.now.toString()},

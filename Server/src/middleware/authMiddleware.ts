@@ -53,7 +53,11 @@ export const verifyToken = async (
   let result;
 
   if (!authHeader) {
-    return res.status(401);
+      result = {
+        error: true,
+        message: "Access token not found",
+      };
+    return res.send(result);
   }
 
   const accessToken = req.headers.authorization.split(" ")[1];

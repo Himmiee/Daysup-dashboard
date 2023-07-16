@@ -1,18 +1,30 @@
 import { React, useState, useEffect } from "react";
-import { Menu } from "../others/menu";
+import { Menu } from "../../utils/menu";
 import { HiLogout } from "react-icons/hi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, NavLink, useNavigate } from "react-router-dom";
+
 
 const Dashboard = () => {
   const [data, useData] = useState(Menu);
   const [it, setIt] = useState(null);
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
+  const navigate = useNavigate()
+  const location = useLocation()
+  // const [actState, setActState] = useState(null);
   const [icon, setIcon] = useState(false);
+  const toggle = (i) => {
+    // if (active === i) return setActive(null);
+    setActive(i); 
+    console.log(location.pathname)
+  };
+  useEffect(() => {
+  
+  }, []);
 
   return (
     <section className=" max-h-full">
       <div className="sm:flex sm:h-[100vh]">
-        <div className=" w-[100%] bottom-0 absolute sm:relative border-gray-200 sm:border-t-0 border-t-2 ">
+        <div className=" w-full bottom-0 fixed sm:relative border-gray-200 sm:border-t-0 border-t-2 ">
           <div className="logo">
             <img
               src="../purple.png"
@@ -22,18 +34,20 @@ const Dashboard = () => {
             <img
               src="../bare.png"
               className="w-24 -ml-1 hidden sm:flex
-             lg:hidden h-18 mt-5 mb-11"
+         lg:hidden h-18 mt-5 mb-11"
               alt="logo"
             />
           </div>
           <ul className=" sm:relative sm:ml-5 flex justify-around sm:flex-col">
             {data?.map((item, idx) => {
               return (
-                <Link
+                <NavLink
                   key={idx}
                   to={item?.link}
                   onClick={() => {
-                    setActive(idx);
+                    toggle(idx);
+                    // setActive(idx);
+                    // setActState(item?.link);
                     setIcon(!icon);
                   }}
                 >
@@ -52,8 +66,8 @@ const Dashboard = () => {
                             : "text-sm text-gray-400 lg:text-gray-400 sm:text-[#1b1bcb54]"
                         }
                       >
-                        {item.icon}
-                        {/* { active === idx ? `${item.icon} `: `${item.filled}`} */}
+                        {active === idx ? item.icon : item.icon}
+
                       </div>
                       <p
                         className={
@@ -66,12 +80,15 @@ const Dashboard = () => {
                       </p>
                     </div>
                   </li>
-                </Link>
+                </NavLink>
               );
             })}
           </ul>
           {/* #1C1BCB #878888 #B0B0DA  */}
-          <div className="hidden text-grey-400 lg:ml-6 mx-5 sm:flex gap-5 mt-40 lg:w-48 rounded-xl p-3 justify-center hover:bg-[#1C1BCB] cursor-pointer text-white bg-[#4a4ae4]">
+          <div onClick={() => {
+            localStorage.clear();
+            navigate("/")
+          }} className="hidden text-grey-400 lg:ml-6 mx-5 sm:flex gap-5 mt-40 lg:w-48 rounded-xl p-3 justify-center hover:bg-[#1C1BCB] cursor-pointer text-white bg-[#4a4ae4]">
             <p className="text-base font-semibold hidden lg:flex">Logout</p>
             <div>
               {" "}
@@ -85,3 +102,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+

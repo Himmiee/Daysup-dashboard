@@ -101,10 +101,11 @@ export const userLogin = async (
     }
 
     const user = await getUsersByMail(email).select(
-      "+authentication.salt +authentication.password"
+      "+authentication.salt +authentication.password +is_admin +is_active"
     );
     if (!user) return res.status(400).send("Invalid email or password");
     let hashedPassword = authentication(user.authentication.salt, password);
+
 
     if (user.authentication.password !== hashedPassword)
       return res.status(400).send("Invalid Password");
@@ -113,6 +114,7 @@ export const userLogin = async (
       salt,
       user._id.toString()
     );
+
     const token = verify(email);
     user.authentication.accessToken = token;
     await user.save();
@@ -157,7 +159,7 @@ export const resetPassword = async (
     const salt = random();
 
     UserModel.findOneAndUpdate(
-      { email },
+      { email: email },
       {
         $set: {
           authentication: {
@@ -167,7 +169,7 @@ export const resetPassword = async (
         },
       }
     );
-    user.authentication.password = authentication(salt,password)
+    user.authentication.password = authentication(salt, password);
     let hashedPassword = authentication(salt, user.authentication.password);
     if (password !== hashedPassword) {
       let result = {

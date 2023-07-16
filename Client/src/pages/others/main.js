@@ -2,15 +2,21 @@ import React, { useEffect, useState } from "react";
 import { ItemContext } from "../../context/store";
 import NavComponent from "../Dashboard/navbar";
 import CardComponent from "../../components/card";
+import { tags, events } from "../../utils/menu";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { IoMdNotificationsOutline } from "react-icons/io";
 
 const MainComponent = () => {
-  const { setShowNav, setShowHeader, showHeader } = ItemContext();
+  const { setShowNav, setShowHeader, showHeader, showNav } = ItemContext();
+  const [data, useData] = useState(tags);
+  const [evt, useEvt] = useState(events);
   useEffect(() => {
     setShowNav(true);
     setShowHeader(true);
   }, []);
   return (
-    <section className="sm:w-[90%] border-l-[1px] border-gray-200 w-[100%] -z-10 inter lg:w-[82%] bg-[#ffffff] ">
+    <section className="sm:w-[90%] overflow-hidden border-l-[1px]  border-gray-200 w-[100%] h-[92vh] sm:h-[100vh] inter lg:w-[82%] bg-[#ffffff] ">
       {showHeader && <NavComponent />}
       <div className="px-8">
         <div className="wrap   from-[#3D3CC6] to-gray-400 bg-gradient-to-tr w-full h-40 my-3 rounded-md">
@@ -29,8 +35,8 @@ const MainComponent = () => {
           </div>
         </div>
         <div className="">
-          <h3 className="pt-5 font-bold text-lg">Departments</h3>
-          <div className="card-wrap  gap-4 grid grid-cols-2 sm:flex justify-between">
+          <h3 className=" mt-2 sm:pt-5 font-bold text-lg">Departments</h3>
+          <div className="card-wrap gap-4 mt-2 grid grid-cols-2 sm:flex justify-between">
             <CardComponent
               className="w-10  flex justify-center items-center h-10 rounded-full ml-4 text-red-600 bg-red-200"
               name="Art"
@@ -51,6 +57,59 @@ const MainComponent = () => {
               name="Wahalurdd"
               number="198"
             />
+          </div>
+        </div>
+        <div className="bottom tbl my-2 overflow-y-auto mt-5 sm:mt-2 h-80  grid-cols 1 grid sm:grid-cols-2 lg:grid-cols-3 sm:h-[340px] sm:gap-6 ">
+          <div className="my-3 sm:my-0 h-80 shadow-sm rounded-md border-gray-100 border-[1px] ">
+            <p className="p-2 px-4 font-bold text-[16px]">Events</p>
+            <div className="px-4 ">
+              <ul className=" list-disc">
+                {evt.map((item, i) => {
+                  return (
+                    <li key={i} className="flex my-2 h-11 justify-between">
+                      <div className="">
+                        {" "}
+                        <h1 className="text-sm font-bold">{item.name}</h1>
+                        <p className="text-[12px] text-gray-300">
+                          {item?.date}
+                        </p>
+                      </div>
+                      <div className="mr-3 w-8 hover:bg-[#2322CD] cursor-pointer hover:text-white flex text-gray-400 rounded-full justify-center items-center h-8 bg-[#dedefaa8]">
+                        <IoMdNotificationsOutline />
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+          <div className="my-3 sm:my-0 h-80  rounded-md bg-opacity-40 bg-[#dedefaa8] border-gray-100 border-[1px] ">
+            <p className="p-2 px-4 font-bold text-[16px]">Schedule</p>
+            <div className="opacity-20">
+              <img src="../bare.png" className="w-64 h-48 m-auto" alt="" />
+              <p className="flex justify-center font-medium text-sm text-[#6868c5]">Nothing Here yet!.</p>
+            </div>
+          </div>
+          <div className=" my-3 sm:my-0 h-80 shadow-sm   rounded-md border-gray-100 border-[1px] ">
+            <p className="p-2 px-4 font-bold text-[16px]">Our Programs</p>
+            <div className="px-4 my-2 cursor-pointer">
+              {data.map((item, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="flex my-1 hover:bg-black hover:text-white hover:rounded-md hover:px-2 justify-between h-12 items-center  border-gray-100 border-t-[1px]"
+                  >
+                    <div className="">
+                      <h1 className="text-sm font-bold">{item.name}</h1>
+                      <p className="text-[12px] text-gray-300">{item.tag}</p>
+                    </div>
+                    <div>
+                      <BsArrowRight className="text-gray-300" />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

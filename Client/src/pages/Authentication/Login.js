@@ -6,9 +6,10 @@ import InputComponent from "../../components/inputComponent";
 import Button from "../../components/Button";
 
 const LoginComponent = () => {
-  const { email, setEmail, password, setPassword,setShowNav } = ItemContext();
+  const { email, setEmail, password, setPassword,setShowNav ,loginErr, UserLogin } = ItemContext();
   const handleClick = () => {
-    console.log("dey play.",email, password);
+    console.log("dey play.");
+    UserLogin();
   };
   useEffect(() => {
     setShowNav(false)
@@ -62,6 +63,11 @@ const LoginComponent = () => {
               className="bg-[#3D3CC6] disabled:text-gray-200 text-white disabled:bg-[#878888bd]  w-[350px] sm:w-[415px] rounded-lg h-9 "
             />
           </div>
+          {loginErr && (
+            <p className="flex justify-center text-red-400 text-[10px]">
+              {loginErr}
+            </p>
+          )}
           <p className="text-[12px] cursor-pointer flex justify-center lg:justify-start ">
             Don't have an account.?.{" "}
             <Link to={"/register"}>

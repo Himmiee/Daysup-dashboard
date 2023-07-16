@@ -9,13 +9,21 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import UserCard from "../../components/usercard";
 
 const UsersComponent = () => {
-  const { setShowNav, setShowHeader, showHeader } = ItemContext();
+  const {
+    setShowNav,
+    setShowHeader,
+    showHeader,
+    getStudents,
+    state: { studentDetails },
+  } = ItemContext();
   const handleScroll = () => {
     document.getElementById("scroll").scrollTop += 100;
   };
   useEffect(() => {
     setShowNav(true);
     setShowHeader(true);
+    getStudents();
+    // console.log(studentDetails);
   }, []);
   return (
     <section className="sm:w-[90%] border-l-[1px] border-gray-200 w-[100%] inter lg:w-[82%] bg-[#ffffff] ">
@@ -40,6 +48,7 @@ const UsersComponent = () => {
               <div className="flex rounded-md items-center px-2 bg-[#3D3CC6] text-white ">
                 <IoMdAddCircleOutline className="" />
                 <Button
+                  handleClick={() => "dey play"}
                   title="Add Student"
                   className="h-7 rounded-md text-[12px] font-light w-24  bg-[#3D3CC6]"
                 />
@@ -50,7 +59,9 @@ const UsersComponent = () => {
         <div className="bottom">
           <nav>
             <ul className="flex text-sm font-bold gap-2 text-[#3D3CC6]">
-              <li className="border-b-2 mt-2 sm:mt-0 border-[#3D3CC6]">All Students</li>
+              <li className="border-b-2 mt-2 sm:mt-0 border-[#3D3CC6]">
+                All Students
+              </li>
               {/* <li>Juniors</li>
               <li>Seniors</li> */}
             </ul>
@@ -68,7 +79,11 @@ const UsersComponent = () => {
             </div>
           </div>
           <div className="tbl sm:hidden overflow-y-auto h-[70vh] ">
-            <UserCard />
+            {studentDetails.map((items, id) => {
+              return (
+                <UserCard data={items} key={id} />
+              )
+            })}
           </div>
           <div className="mt-3 sm:flex hidden shadow-md  rounded-lg h-[500px]">
             <table className=" w-full">
@@ -82,29 +97,45 @@ const UsersComponent = () => {
                   <th></th>
                 </tr>
               </thead>
-              {/* <tbody className="">
+              <tbody className=" ">
                 <div
                   id="scroll"
                   className="tbl h-[410px] mt-2  overflow-y-auto"
                 >
-                  <tr className="flex bg-white w-full justify-between text-[12px] text-gray-400 h-10 items-center px-5 ">
-                    {" "}
-                    <td>Big Lee</td>
-                    <td>djjLee@gmail.com</td>
-                    <td>001</td>
-                    <td>Science</td>
-                    <td>active</td>
-                    <td className="text-black">
-                      {" "}
-                      <BsThreeDotsVertical />
-                    </td>
-                  </tr>
+                  {studentDetails.map((item, index) => {
+                    return (
+                      <tr className="flex  bg-white w-full justify-between text-[12px] text-gray-400 h-10 items-center px-5 ">
+                        {" "}
+                        <td className="h-10 w-24 flex justify-start">
+                          {item.name}
+                        </td>
+                        <td className="h-10 w-24  flex justify-start">
+                          {item.email}
+                        </td>
+                        <td className="h-10 w-24 flex justify-start">
+                          {item.regNumber}
+                        </td>
+                        <td className="h-10 w-24  flex justify-start">
+                          Processing
+                        </td>
+                        <td className="h-10 w-24  flex justify-start">
+                          active
+                        </td>
+                        <td className="text-black">
+                          {" "}
+                          <BsThreeDotsVertical />
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </div>
-              </tbody> */}
+              </tbody>
             </table>
-            <div className="absolute left-[38%] top-[40%]">
-              <img src="../bare.png" className="opacity-20" alt="" />
-            </div>
+            {!studentDetails.length && (
+              <div className="absolute left-[38%] top-[40%]">
+                <img src="../bare.png" className="opacity-20" alt="" />
+              </div>
+            )}
             <div
               onClick={handleScroll}
               // text-[#3D3CC6]
