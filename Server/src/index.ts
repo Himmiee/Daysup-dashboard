@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import router from "./router";
-import { emailTemplate } from "helpers/template";
+// import { emailTemplate } from "helpers/template";
 
 const app = express();
 

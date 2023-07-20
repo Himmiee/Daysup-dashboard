@@ -16,7 +16,7 @@ const MainComponent = () => {
     setShowHeader(true);
   }, []);
   return (
-    <section className="sm:w-[90%] overflow-hidden border-l-[1px]  border-gray-200 w-[100%] h-[92vh] sm:h-[100vh] inter lg:w-[82%] bg-[#ffffff] ">
+    <section className="sm:w-[90%] overflow-hidden border-l-[1px]  border-gray-200 w-[100%] h-[91vh] sm:h-[100vh] inter lg:w-[82%] bg-[#ffffff] ">
       {showHeader && <NavComponent />}
       <div className="px-8">
         <div className="wrap   from-[#3D3CC6] to-gray-400 bg-gradient-to-tr w-full h-40 my-3 rounded-md">
@@ -97,7 +97,7 @@ const MainComponent = () => {
                 return (
                   <div
                     key={i}
-                    className="flex my-1 hover:bg-black hover:text-white hover:rounded-md hover:px-2 justify-between h-12 items-center  border-gray-100 border-t-[1px]"
+                    className="flex my-1 hover:bg-[#1b1bcba8] hover:text-white hover:rounded-md hover:px-2 justify-between h-12 items-center  border-gray-100 border-t-[1px]"
                   >
                     <div className="">
                       <h1 className="text-sm font-bold">{item.name}</h1>

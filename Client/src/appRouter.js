@@ -5,6 +5,10 @@ import Dashboard from "./pages/Dashboard/dashboard";
 import NavComponent from "./pages/Dashboard/navbar";
 import EventComponent from "./pages/others/event";
 import ProtectedRoutes from "./utils/protectedRoute";
+import UserComponent from "./pages/others/Community";
+import MainComponent from "./pages/others/main";
+import NotificationComponent from "./pages/others/notifications";
+import SettingsComponent from "./pages/others/settings";
 import LoaderComponent from "./components/loader";
 import RegisterComponent from "./pages/Authentication/Register";
 import LoginComponent from "./pages/Authentication/Login";
@@ -13,18 +17,20 @@ const AppRouter = () => {
   const { showNav } = ItemContext();
   const location = useLocation();
   // const EventComponent = lazy(() => import("./pages/others/event"));
-  const MainComponent = lazy(() => import("./pages/others/main"));
-  const UserComponent = lazy(() => import("./pages/others/Community"));
-  const NotificationComponent = lazy(() =>
-    import("./pages/others/notifications")
-  );
-  const SettingsComponent = lazy(() => import("./pages/others/settings"));
+  // const Dashboard = lazy(() => import("./pages/Dashboard/dashboard"));
+  // const MainComponent = lazy(() => import("./pages/others/main"));
+  // const UserComponent = lazy(() => import("./pages/others/Community"));
+  // const NotificationComponent = lazy(() =>
+  //   import("./pages/others/notifications")
+  // );
+  // const SettingsComponent = lazy(() => import("./pages/others/settings"));
   return (
     <section>
       <div className="">
         <div className={showNav ? "flex" : ""}>
-          {showNav && <Dashboard />}
-          <Suspense fallback={<LoaderComponent />}>
+        {showNav && <Dashboard />}
+          {/* <Suspense fallback={<LoaderComponent />}> */}
+            {/* {showNav && <Dashboard />} */}
             <Routes location={location}>
               <Route path="/" element={<LoginComponent />} />
               <Route path="/register" element={<RegisterComponent />} />
@@ -39,7 +45,7 @@ const AppRouter = () => {
                 <Route path="/settings" element={<SettingsComponent />} />
               </Route>
             </Routes>
-          </Suspense>
+          {/* </Suspense> */}
         </div>
       </div>
     </section>

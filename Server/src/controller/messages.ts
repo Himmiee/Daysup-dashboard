@@ -6,6 +6,7 @@ import {
   getMessage,
   getMessageById,
   leaveApplication,
+  leaveList,
   updateLeaveStatus,
 } from "../models/messageSchema";
 import { getUsersById, getUsersByMail } from "../models/authSchema";
@@ -52,6 +53,16 @@ export const viewLeave = async (req: express.Request, res:express.Response) => {
     return res.send(message)
   } catch (err) {
     res.send(err);
+  }
+}
+export const viewAllLeave = async (req: express.Request, res: express.Response) => {
+
+  try{
+      const messages = await leaveList();
+      return res.status(200).json(messages).end();
+
+  } catch(err) {
+      res.status(400)
   }
 }
 

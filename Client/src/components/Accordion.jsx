@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { AccordionMenu } from "../utils/menu";
 import Button from "./Button";
 import { BsX, BsCheck2 } from "react-icons/bs";
+import { ItemContext } from "../context/store";
 
 const AccordionComponent = ({ data, i }) => {
   // const [data, useData] = useState(AccordionMenu);
   const is_admin = localStorage.getItem("is_admin");
   const admin = JSON.parse(is_admin);
   const [active, setActive] = useState(null);
+  const name = localStorage.getItem("name")
+
   const toggle = (i) => {
     if (active === i) {
       return setActive(null);
@@ -32,7 +35,7 @@ const AccordionComponent = ({ data, i }) => {
             <div className="flex px-3 gap-3">
               <div className="wrap bg-[#DEDEFA] flex justify-center items-center w-10 h-10 rounded-full">
                 <div className="dp bg-[#3D3CC6] w-8 h-8 items-center flex justify-center rounded-full">
-                  <p className="text-white font-semibold">D</p>
+                  <p className="text-white font-semibold">{name.charAt(0)}</p>
                 </div>
               </div>
               <div className="middle">

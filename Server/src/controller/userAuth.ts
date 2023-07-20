@@ -1,8 +1,10 @@
 import express from "express";
 import {
   UserModel,
+  createStudent,
   createUserOrAdmin,
   getUserByRegNumber,
+  getUsersById,
   getUsersByMail,
   updatedUser,
 } from "../models/authSchema";
@@ -106,7 +108,6 @@ export const userLogin = async (
     if (!user) return res.status(400).send("Invalid email or password");
     let hashedPassword = authentication(user.authentication.salt, password);
 
-
     if (user.authentication.password !== hashedPassword)
       return res.status(400).send("Invalid Password");
     const salt = random();
@@ -130,12 +131,46 @@ export const userLogin = async (
   }
 };
 
+export const addStudent = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  const { email, regNumber, name, password } = req.body;
+  if (!email || !regNumber || !name) {
+    let result = {
+      error: "true",
+      value: "Invalid email or registration",
+    };
+    return res.status(400).send(result);
+  }
+  try {
+    const salt = random() 
+    const user = await getUsersByMail(email);
+    if (user) return res.status(400).send("User already exists");
+    const checkRegNo = await getUserByRegNumber(regNumber)
+    if (checkRegNo) return res.status(400).send("RegNo already exists");
+    const student = createStudent({
+      name,
+      email,
+      regNumber,
+      authentication: {
+        password: authentication(salt, password),
+        salt,
+      }
+    });
+    return res.status(200).send("created successfully");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const resetPassword = async (
   req: express.Request,
   res: express.Response
 ) => {
   const { email, password } = req.body;
-  const user = await getUsersByMail(email).select(
+  const { id } = req.params;
+  const user = await getUsersById(id).select(
     "+authentication.salt +authentication.password"
   );
   let result;
@@ -154,34 +189,16 @@ export const resetPassword = async (
     };
     return res.status(400).json(result);
   }
-
   try {
     const salt = random();
-
-    UserModel.findOneAndUpdate(
-      { email: email },
+    await UserModel.findByIdAndUpdate(
+      { _id: id },
       {
-        $set: {
-          authentication: {
-            password: authentication(salt, password),
-            salt,
-          },
-        },
+        password: authentication(salt, password),
       }
     );
-    user.authentication.password = authentication(salt, password);
-    let hashedPassword = authentication(salt, user.authentication.password);
-    if (password !== hashedPassword) {
-      let result = {
-        main: user.authentication.password,
-        next: hashedPassword,
-        other: user.authentication.salt,
-      };
-      return res.status(400).send(result);
-    }
-
-    res.send("done");
+    return res.send("done");
   } catch (err) {
-    res.send(err.message);
+    console.log(err);
   }
 };

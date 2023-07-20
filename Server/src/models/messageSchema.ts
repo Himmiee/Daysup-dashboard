@@ -36,6 +36,7 @@ export const updateLeaveStatus = (email: string, status: string) => {
 };
 export const deleteUserById = (email: string) =>
   LeaveModel.findOneAndDelete({ email: email });
+export const leaveList = () => LeaveModel.find();
 export const leaveApplication = (values: Record<string, any>) =>
   new LeaveModel(values).save().then((message) => message.toObject());
 export const getMessageById = (id: string) => LeaveModel.findById(id);

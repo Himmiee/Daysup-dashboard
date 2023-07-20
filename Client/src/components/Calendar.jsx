@@ -67,7 +67,7 @@ const CalendarComponent = () => {
           );
         })}
       </div>
-      <div className="h-[35vh] text-[12px]  grid grid-cols-7">
+      <div className="h-[30vh] lg:h-[35vh] text-[12px]  grid grid-cols-7">
         {Calendar(day.month(), day.year()).map(({ date, currentMonth, today }, i) => {
           return (
             <div

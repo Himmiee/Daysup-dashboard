@@ -8,6 +8,7 @@ const Context = ({ children }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [regNumber, setRegNumber] = useState("");
+  const [popErr, setPopErr] = useState("");
   const [popup, setPopup] = useState(false);
   const [password, setPassword] = useState("");
   const [leave, setLeave] = useState("");
@@ -39,6 +40,24 @@ const Context = ({ children }) => {
       setErr(err.response.data);
     }
   };
+  const RegisterStudents = async () => {
+    try {
+      const res = await axios.post("http://localhost:3050/addStudent", {
+        name,
+        email,
+        regNumber,
+      });
+
+      if (res.status !== 400 || res.status !== 401) {
+        console.log(res.data);
+        setPopup(false);
+        // dispatch({ type: "STUDENT_DETAILS", payload: res.data });
+      }
+    } catch (err) {
+      console.log(err.response.data);
+      setErr(err.response.data);
+    }
+  };
 
   const UserLogin = async () => {
     try {
@@ -49,12 +68,12 @@ const Context = ({ children }) => {
       if (res.status !== 400 || res.status !== 401) {
         console.log(res.data);
         setLoginErr(" ");
-        localStorage.setItem("email", res.data.email);
-        localStorage.setItem("name", res.data.name);
-        localStorage.setItem("is_admin", res.data.is_admin);
-        localStorage.setItem("token", res.data.authentication["accessToken"]);
+        localStorage.setItem("email", res?.data.email);
+        localStorage.setItem("name", res?.data.name);
+        localStorage.setItem("is_admin", res?.data.is_admin);
+        localStorage.setItem("token", res?.data.authentication["accessToken"]);
         localStorage.setItem("is_authenticated", true);
-        dispatch({ type: "LOGIN_DETAILS", payload: res.data });
+        dispatch({ type: "LOGIN_DETAILS", payload: res?.data });
         navigate("/main");
       }
     } catch (err) {
@@ -77,6 +96,22 @@ const Context = ({ children }) => {
       console.log(err.response.data);
     }
   };
+
+  const leaveList = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.get(`http://localhost:3050/leaveList`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch({ type: "ACCORDION_MENU", payload: res.data });
+      console.log(res.data);
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  };
+
   const getStudents = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -86,7 +121,7 @@ const Context = ({ children }) => {
         },
       });
       dispatch({ type: "STUDENT_DETAILS", payload: res.data });
-      console.log(res.data);
+      // console.log(res.data);
     } catch (err) {
       console.log(err.response.data);
     }
@@ -104,6 +139,14 @@ const Context = ({ children }) => {
       });
       if (res.status !== 400 || res.status !== 401) {
         console.log(res.data);
+        setPopErr("")
+        if (!res.data.errors) {
+          setPopup(false);
+          
+        } else {
+          // setPopErr(res.data.name)
+ 
+        }
       }
     } catch (err) {
       console.log(err);
@@ -126,7 +169,9 @@ const Context = ({ children }) => {
         showHeader,
         setShowHeader,
         err,
+        leaveList,
         state,
+        RegisterStudents,
         dispatch,
         setErr,
         loginErr,
@@ -140,6 +185,8 @@ const Context = ({ children }) => {
         setLeave,
         CreateAccordion,
         getStudents,
+        popErr,
+        setPopErr
       }}
     >
       {children}

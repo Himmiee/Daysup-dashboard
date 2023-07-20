@@ -7,17 +7,28 @@ import { CiSaveUp1 } from "react-icons/ci";
 import { BsFilter, BsSearch, BsArrowDown } from "react-icons/bs";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import UserCard from "../../components/usercard";
+import { StudentModal } from "../../components/modal";
 
 const UsersComponent = () => {
   const {
     setShowNav,
     setShowHeader,
     showHeader,
+    popup,
+    popErr,
+    setPopup,
     getStudents,
+    RegisterStudents,
     state: { studentDetails },
   } = ItemContext();
   const handleScroll = () => {
     document.getElementById("scroll").scrollTop += 100;
+  };
+  const is_admin = localStorage.getItem("is_admin");
+  const admin = JSON.parse(is_admin);
+  const handleToSubmit = () => {
+    RegisterStudents()
+    getStudents();
   };
   useEffect(() => {
     setShowNav(true);
@@ -30,6 +41,15 @@ const UsersComponent = () => {
       {showHeader && <NavComponent />}
       <div className="ml-7 pr-9">
         {" "}
+        {popup && (
+          <StudentModal
+            handleSubmit={handleToSubmit}
+            title="Add Student"
+            field="Email"
+            field2="Details"
+            field3="Name"
+          />
+        )}
         <div className="top hidden sm:grid">
           <div className="div flex my-8 justify-between ">
             <div className="flex items-center gap-2 ">
@@ -38,19 +58,25 @@ const UsersComponent = () => {
               <p className="text-[10px] font-bold text-[#3D3CC6]">100</p>
             </div>
             <div className=" flex gap-4">
-              <div className="flex rounded-md items-center bg-[#ffffff] border-[#3D3CC6] border-[1px] px-2 ">
-                <CiSaveUp1 className="text-[#3D3CC6]" />
+              <div className="flex rounded-md items-center text-[#3D3CC6] bg-white  border-[#3D3CC6] border-[1px] px-2 ">
+                <CiSaveUp1 className="" />
                 <Button
                   title="Export"
-                  className="h-7 rounded-md text-[12px] text-[#3D3CC6] font-light w-16 "
+                  className="h-7 rounded-md text-[12px] font-light w-16 "
                 />
               </div>
-              <div className="flex rounded-md items-center px-2 bg-[#3D3CC6] text-white ">
+              <div
+                className={
+                  admin
+                    ? "flex rounded-md items-center px-2 bg-[#1c1bcb] hover:bg-[#1b1bcbdc] text-white "
+                    : "flex rounded-md font-thin italic items-center px-2 bg-gray-200 text-gray-400 "
+                }
+              >
                 <IoMdAddCircleOutline className="" />
                 <Button
-                  handleClick={() => "dey play"}
+                  handleClick={() => setPopup(true)}
                   title="Add Student"
-                  className="h-7 rounded-md text-[12px] font-light w-24  bg-[#3D3CC6]"
+                  className="h-7 rounded-md text-[12px] font-light w-24  "
                 />
               </div>
             </div>
@@ -59,7 +85,7 @@ const UsersComponent = () => {
         <div className="bottom">
           <nav>
             <ul className="flex text-sm font-bold gap-2 text-[#3D3CC6]">
-              <li className="border-b-2 mt-2 sm:mt-0 border-[#3D3CC6]">
+              <li className="border-b-2 text-base sm:text-sm mt-2 sm:mt-0 border-[#3D3CC6]">
                 All Students
               </li>
               {/* <li>Juniors</li>
@@ -80,9 +106,7 @@ const UsersComponent = () => {
           </div>
           <div className="tbl sm:hidden overflow-y-auto h-[70vh] ">
             {studentDetails.map((items, id) => {
-              return (
-                <UserCard data={items} key={id} />
-              )
+              return <UserCard data={items} key={id} />;
             })}
           </div>
           <div className="mt-3 sm:flex hidden shadow-md  rounded-lg h-[500px]">
@@ -93,32 +117,32 @@ const UsersComponent = () => {
                   <th>Email</th>
                   <th>RegNumber</th>
                   <th>Faculty</th>
-                  <th>Status</th>
+                  <th>S-Status</th>
                   <th></th>
                 </tr>
               </thead>
-              <tbody className=" ">
+              <tbody className="">
                 <div
                   id="scroll"
                   className="tbl h-[410px] mt-2  overflow-y-auto"
                 >
                   {studentDetails.map((item, index) => {
                     return (
-                      <tr className="flex  bg-white w-full justify-between text-[12px] text-gray-400 h-10 items-center px-5 ">
+                      <tr className="flex  border-gray-200 border-b-[1px] bg-white w-full justify-between text-[12px] text-gray-400 h-10 items-center px-5 ">
                         {" "}
-                        <td className="h-10 w-24 flex justify-start">
+                        <td className="h-10 w-24 flex items-center justify-start">
                           {item.name}
                         </td>
-                        <td className="h-10 w-24  flex justify-start">
+                        <td className="h-10  w-32 items-center flex justify-start">
                           {item.email}
                         </td>
-                        <td className="h-10 w-24 flex justify-start">
+                        <td className="h-10 w-24 items-center flex justify-start">
                           {item.regNumber}
                         </td>
-                        <td className="h-10 w-24  flex justify-start">
-                          Processing
+                        <td className="h-10 w-24 items-center  flex justify-start">
+                          ...
                         </td>
-                        <td className="h-10 w-24  flex justify-start">
+                        <td className="h-10 w-24 items-center flex justify-start">
                           active
                         </td>
                         <td className="text-black">

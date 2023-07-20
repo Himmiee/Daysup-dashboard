@@ -59,8 +59,8 @@ const SettingsComponent = () => {
             nd decide to change your account details from this section right
             here.
           </p>
-          <div className="grid grid-cols-2 my-4">
-            <label className="lg:w-[412px]  sm:w-[350px]  font-bold ml-1 text-[12px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 my-4">
+            <label className="lg:w-[412px] w-[320px]  sm:w-[300px]  font-bold ml-1 text-[12px]">
               <div className="flex justify-between item-center">
                 <p>Email:</p>
                 <RiEdit2Line className="text-gray-400 cursor-pointer" />
@@ -73,7 +73,7 @@ const SettingsComponent = () => {
                 className=""
               />
             </label>
-            <label className="font-bold lg:w-[412px]  sm:w-[350px]  ml-1 text-[12px]">
+            <label className="font-bold lg:w-[412px] w-[320px]  sm:w-[300px]  ml-1 text-[12px]">
               <div className="flex  justify-between item-center">
                 <p>Password:</p>
                 <RiEdit2Line className="text-gray-400 cursor-pointer" />
@@ -86,7 +86,7 @@ const SettingsComponent = () => {
                 className=""
               />
             </label>
-            <label className="font-bold lg:w-[412px]  sm:w-[350px]  ml-1 text-[12px] my-4">
+            <label className="font-bold lg:w-[412px] w-[320px]  sm:w-[300px]  ml-1 text-[12px] sm:my-4">
               <div className="flex  justify-between item-center">
                 <p>RegNumber:</p>
                 <RiEdit2Line className="text-gray-400 cursor-pointer" />

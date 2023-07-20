@@ -21,34 +21,37 @@ const EventComponent = () => {
     popup,
     setPopup,
     leave,
+    setTitle,
     setLeave,
     CreateAccordion,
+    leaveList,
     state: { accordionDetails },
   } = ItemContext();
+  const is_admin = localStorage.getItem("is_admin");
+  const admin = JSON.parse(is_admin);
 
   useEffect(() => {
     setShowNav(true);
     setShowHeader(true);
-    AccordionList();
+    admin ? leaveList() : AccordionList();
     // console.log(accordionDetails);
   }, []);
   const handleToSubmit = () => {
     CreateAccordion();
-    setPopup(false)
-    AccordionList();
+    admin ? leaveList() : AccordionList();
   };
 
   return (
-    <section className="sm:w-[90%] overflow-hidden border-l-[1px]  border-gray-200 w-full  inter lg:w-[82%] bg-[#ffffff] ">
+    <section className="sm:w-[90%] overflow-hidden border-l-[1px] h-[88vh] sm:h-full  border-gray-200 w-full  inter lg:w-[82%] bg-[#ffffff] ">
       {popup && (
         <div>
           <ModalComponent
-              onChange={(e) => {
+            onChange={(e) => {
               setLeave(e.target.value);
             }}
             handleSubmit={handleToSubmit}
             title="Write Request"
-            field="Leave"
+            field="Exiat"
           />
         </div>
       )}
@@ -63,21 +66,21 @@ const EventComponent = () => {
                 <p className="text-[10px] font-bold text-[#3D3CC6]">12</p>
               </div>
               <div className=" flex gap-4">
-                <div className="flex rounded-md items-center bg-[#ffffff] border-[#3D3CC6] border-[1px] px-2 ">
+                <div className="flex rounded-md items-center bg-white  border-[#3D3CC6] border-[1px] px-2 ">
                   <CiSaveUp1 className="text-[#3D3CC6]" />
                   <Button
                     title="Export"
                     className="h-7 rounded-md text-[12px] text-[#3D3CC6] font-light w-16 "
                   />
                 </div>
-                <div className="flex rounded-md items-center px-2 bg-[#3D3CC6] text-white ">
+                <div className="flex rounded-md items-center px-2 bg-[#1c1bcb] hover:bg-[#1b1bcbdc] text-white ">
                   <IoMdAddCircleOutline className="" />
                   <Button
                     handleClick={() => {
                       setPopup(true);
                     }}
                     title="Add Request"
-                    className="h-7 rounded-md text-[12px] font-light w-24  bg-[#3D3CC6]"
+                    className="h-7 rounded-md text-[12px] font-light w-24  "
                   />
                 </div>
               </div>
@@ -106,8 +109,13 @@ const EventComponent = () => {
           </div>
 
           <div className="tbl overflow-y-auto h-full my-1 sm:my-0 sm:h-[63vh] w-[96%]  mt-2 ">
-            <h1 className="sm:hidden">Events</h1>
-            {accordionDetails.map((item, i) => {
+            <h2
+              className="font-bold text-[#3D3CC6] border-[#3d3cc6]  border-b-2 w-14
+           mb-3 text-md"
+            >
+              Events
+            </h2>
+            {accordionDetails?.map((item, i) => {
               return (
                 <div key={i}>
                   <AccordionComponent data={item} index={i} />
