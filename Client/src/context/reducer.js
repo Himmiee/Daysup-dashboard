@@ -2,7 +2,8 @@ export const INITIAL_STATE = {
   userDetails: [],
   loginDetails: [],
   accordionDetails: [],
-  studentDetails: []
+  studentDetails: [],
+  eachDetails: {},
 };
 
 export const Reducer = (state, action) => {
@@ -22,10 +23,15 @@ export const Reducer = (state, action) => {
         ...state,
         accordionDetails: action.payload,
       };
-      case "STUDENT_DETAILS":
-        return {
-            ...state,
-            studentDetails: action.payload,
-        }
+    case "STUDENT_DETAILS":
+      return {
+        ...state,
+        studentDetails: action.payload,
+      };
+    case "EACH_DETAIL":
+      return {
+        ...state,
+        eachDetails: action.payload,
+      };
   }
 };

@@ -6,14 +6,24 @@ import InputComponent from "../../components/inputComponent";
 import Button from "../../components/Button";
 
 const LoginComponent = () => {
-  const { email, setEmail, password, setPassword,setShowNav ,loginErr, UserLogin } = ItemContext();
+  const {
+    email,
+    setEmail,
+    password,
+    isLoading,
+    setIsLoading,
+    setPassword,
+    setShowNav,
+    loginErr,
+    UserLogin,
+  } = ItemContext();
   const handleClick = () => {
     console.log("dey play.");
     UserLogin();
   };
   useEffect(() => {
-    setShowNav(false)
-  },[])
+    setShowNav(false);
+  }, []);
   return (
     <section className="grid lg:flex max-h-full inter">
       <div className="lg:w-1/2">
@@ -59,8 +69,12 @@ const LoginComponent = () => {
                 !email.includes("@") ||
                 !email.includes(".")
               }
-              title="SignIn"
-              className="bg-[#3D3CC6] disabled:text-gray-200 text-white disabled:bg-[#878888bd]  w-[350px] sm:w-[415px] rounded-lg h-9 "
+              title={isLoading ? "loading..." : "SignIn"}
+              className={
+                isLoading
+                  ? "bg-[#3c3cc694]  text-gray-300   w-[350px] sm:w-[415px] rounded-lg h-9 "
+                  : "bg-[#3D3CC6] disabled:text-gray-200 text-white disabled:bg-[#878888bd]  w-[350px] sm:w-[415px] rounded-lg h-9 "
+              }
             />
           </div>
           {loginErr && (

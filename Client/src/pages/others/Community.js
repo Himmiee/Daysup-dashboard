@@ -27,9 +27,10 @@ const UsersComponent = () => {
   const is_admin = localStorage.getItem("is_admin");
   const admin = JSON.parse(is_admin);
   const handleToSubmit = () => {
-    RegisterStudents()
+    RegisterStudents();
     getStudents();
   };
+  const [search, setSearch] = useState("");
   useEffect(() => {
     setShowNav(true);
     setShowHeader(true);
@@ -55,7 +56,9 @@ const UsersComponent = () => {
             <div className="flex items-center gap-2 ">
               {" "}
               <p className="font-bold text-lg ">Students</p>
-              <p className="text-[10px] font-bold text-[#3D3CC6]">100</p>
+              <p className="text-[10px] font-bold text-[#3D3CC6]">
+                {studentDetails?.length}
+              </p>
             </div>
             <div className=" flex gap-4">
               <div className="flex rounded-md items-center text-[#3D3CC6] bg-white  border-[#3D3CC6] border-[1px] px-2 ">
@@ -93,21 +96,38 @@ const UsersComponent = () => {
             </ul>
           </nav>
           <div className="search flex px-5 justify-between border-gray-100 border-[1px] shadow-sm rounded-md my-2 p-2">
-            <div className="flex gap-3 items-center ">
+            <label htmlFor="" className="flex items-center gap-2">
+              <BsSearch size={12} className="" />
+              <input
+                type="text"
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
+                placeholder="Search for students"
+                className="text-[12px] w-64 outline-none font-medium text-black"
+              />
+            </label>
+            {/* <div className="flex gap-3 items-center ">
               <BsSearch size={12} className="" />
               <p className="text-[12px] font-medium">
                 Search for students by regnumber
               </p>
-            </div>
+            </div> */}
             <div className="flex gap-3 items-center ">
               <BsFilter size={12} className="" />
-              <p className="text-sm font-medium">Filter</p>
+              <p className="text-sm font-medium hidden sm:flex">Filter</p>
             </div>
           </div>
           <div className="tbl sm:hidden overflow-y-auto h-[70vh] ">
-            {studentDetails.map((items, id) => {
-              return <UserCard data={items} key={id} />;
-            })}
+            {studentDetails
+              .filter((item) => {
+                return search.toLowerCase() === " "
+                  ? item
+                  : item.name.toLowerCase().includes(search);
+              })
+              .map((items, id) => {
+                return <UserCard data={items} key={id} />;
+              })}
           </div>
           <div className="mt-3 sm:flex hidden shadow-md  rounded-lg h-[500px]">
             <table className=" w-full">
@@ -126,32 +146,38 @@ const UsersComponent = () => {
                   id="scroll"
                   className="tbl h-[410px] mt-2  overflow-y-auto"
                 >
-                  {studentDetails.map((item, index) => {
-                    return (
-                      <tr className="flex  border-gray-200 border-b-[1px] bg-white w-full justify-between text-[12px] text-gray-400 h-10 items-center px-5 ">
-                        {" "}
-                        <td className="h-10 w-24 flex items-center justify-start">
-                          {item.name}
-                        </td>
-                        <td className="h-10  w-32 items-center flex justify-start">
-                          {item.email}
-                        </td>
-                        <td className="h-10 w-24 items-center flex justify-start">
-                          {item.regNumber}
-                        </td>
-                        <td className="h-10 w-24 items-center  flex justify-start">
-                          ...
-                        </td>
-                        <td className="h-10 w-24 items-center flex justify-start">
-                          active
-                        </td>
-                        <td className="text-black">
+                  {studentDetails
+                    .filter((item) => {
+                      return search.toLowerCase() === " "
+                        ? item
+                        : item.name.toLowerCase().includes(search);
+                    })
+                    .map((item, index) => {
+                      return (
+                        <tr className="flex  border-gray-200 border-b-[1px] bg-white w-full justify-between text-[12px] text-gray-400 h-10 items-center px-5 ">
                           {" "}
-                          <BsThreeDotsVertical />
-                        </td>
-                      </tr>
-                    );
-                  })}
+                          <td className="h-10 w-24 flex items-center justify-start">
+                            {item.name}
+                          </td>
+                          <td className="h-10  w-32 items-center flex justify-start">
+                            {item.email}
+                          </td>
+                          <td className="h-10 w-24 items-center flex justify-start">
+                            {item.regNumber}
+                          </td>
+                          <td className="h-10 w-24 items-center  flex justify-start">
+                            ...
+                          </td>
+                          <td className="h-10 w-24 items-center flex justify-start">
+                            active
+                          </td>
+                          <td className="text-black">
+                            {" "}
+                            <BsThreeDotsVertical />
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </div>
               </tbody>
             </table>

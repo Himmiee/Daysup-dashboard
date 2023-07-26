@@ -17,6 +17,8 @@ const RegisterComponent = () => {
     setPassword,
     setShowNav,
     err,
+    isLoading,
+    setIsLoading,
     RegisterUser,
   } = ItemContext();
 
@@ -120,7 +122,6 @@ const RegisterComponent = () => {
           <div className="my-3 flex justify-center lg:justify-start">
             <Button
               handleClick={handleClick}
-              title="SignUp"
               disabled={
                 !name ||
                 !regNumber ||
@@ -129,7 +130,12 @@ const RegisterComponent = () => {
                 !email.includes("@") ||
                 !email.includes(".")
               }
-              className="bg-[#3D3CC6] disabled:bg-[#878888bd] text-white disabled:text-gray-200  w-[350px] sm:w-[415px] rounded-lg h-9 "
+              title={isLoading ? "loading..." : "SignIn"}
+              className={
+                isLoading
+                  ? "bg-[#3c3cc694]  text-gray-300   w-[350px] sm:w-[415px] rounded-lg h-9 "
+                  : "bg-[#3D3CC6] disabled:text-gray-200 text-white disabled:bg-[#878888bd]  w-[350px] sm:w-[415px] rounded-lg h-9 "
+              }
             />
           </div>
           {/* {!(email.includes("@") || email.includes(".")) && (

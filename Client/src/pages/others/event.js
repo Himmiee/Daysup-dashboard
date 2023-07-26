@@ -27,6 +27,7 @@ const EventComponent = () => {
     leaveList,
     state: { accordionDetails },
   } = ItemContext();
+  const [search,setSearch] = useState("")
   const is_admin = localStorage.getItem("is_admin");
   const admin = JSON.parse(is_admin);
 
@@ -63,7 +64,7 @@ const EventComponent = () => {
               <div className="flex items-center gap-2 ">
                 {" "}
                 <p className="font-bold text-lg ">Requests</p>
-                <p className="text-[10px] font-bold text-[#3D3CC6]">12</p>
+                <p className="text-[10px] font-bold text-[#3D3CC6]">{accordionDetails?.length}</p>
               </div>
               <div className=" flex gap-4">
                 <div className="flex rounded-md items-center bg-white  border-[#3D3CC6] border-[1px] px-2 ">
@@ -95,12 +96,17 @@ const EventComponent = () => {
               </ul>
             </nav>
             <div className="search flex px-5 justify-between border-gray-100 border-[1px] shadow-sm rounded-md my-2 p-2">
-              <div className="flex gap-3 items-center ">
-                <BsSearch size={12} className="" />
-                <p className="text-[12px] font-medium">
-                  Search for students by regnumber
-                </p>
-              </div>
+            <label htmlFor="" className="flex items-center gap-2">
+              <BsSearch size={12} className="" />
+              <input
+                type="text"
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
+                placeholder="Search for students"
+                className="text-[12px] w-64 outline-none font-medium text-black"
+              />
+            </label>
               <div className="flex gap-3 items-center ">
                 <BsFilter size={12} className="" />
                 <p className="text-sm pr-3 font-medium">Filter</p>
@@ -115,7 +121,13 @@ const EventComponent = () => {
             >
               Events
             </h2>
-            {accordionDetails?.map((item, i) => {
+            {accordionDetails?.filter((item) => 
+            {
+              return search.toLowerCase() === ""
+              ? item
+              : item.name.toLowerCase().includes(search)
+            } 
+            ).map((item, i) => {
               return (
                 <div key={i}>
                   <AccordionComponent data={item} index={i} />

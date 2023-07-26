@@ -7,10 +7,12 @@ const stateManagement = createContext();
 const Context = ({ children }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [regNumber, setRegNumber] = useState("");
   const [popErr, setPopErr] = useState("");
   const [popup, setPopup] = useState(false);
   const [password, setPassword] = useState("");
+  const [theId, setTheId] = useState("");
   const [leave, setLeave] = useState("");
   const [showNav, setShowNav] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
@@ -31,9 +33,11 @@ const Context = ({ children }) => {
 
       if (res.status !== 400 || res.status !== 401) {
         console.log(res.data);
+        setIsLoading(true);
         setErr(" ");
         dispatch({ type: "USER_DETAILS", payload: res.data });
         navigate("/");
+        setIsLoading(false);
       }
     } catch (err) {
       console.log(err.response.data);
@@ -66,6 +70,7 @@ const Context = ({ children }) => {
         password,
       });
       if (res.status !== 400 || res.status !== 401) {
+        setIsLoading(true);
         console.log(res.data);
         setLoginErr(" ");
         localStorage.setItem("email", res?.data.email);
@@ -75,6 +80,7 @@ const Context = ({ children }) => {
         localStorage.setItem("is_authenticated", true);
         dispatch({ type: "LOGIN_DETAILS", payload: res?.data });
         navigate("/main");
+        setIsLoading(false);
       }
     } catch (err) {
       console.log(err.response.data);
@@ -96,7 +102,37 @@ const Context = ({ children }) => {
       console.log(err.response.data);
     }
   };
+  const ApproveRequest = async () => {
+    try {
+      const res = await axios.put(
+        `http://localhost:3050/updateLeaveStatus/${theId}`,
+        {
+          status: "completed",
+        }
+      );
 
+      if (res.status !== 400 || res.status !== 401) {
+        console.log(res.data);
+      }
+    } catch (err) {
+      console.log(err.response.data);
+      setErr(err.response.data);
+    }
+  };
+  const DeleteRequest = async () => {
+    try {
+      const res = await axios.delete(
+        `http://localhost:3050/deleteLeave/${theId}`,
+      );
+
+      if (res.status !== 400 || res.status !== 401) {
+        console.log(res.data);
+      }
+    } catch (err) {
+      console.log(err.response.data);
+      setErr(err.response.data);
+    }
+  };
   const leaveList = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -139,13 +175,11 @@ const Context = ({ children }) => {
       });
       if (res.status !== 400 || res.status !== 401) {
         console.log(res.data);
-        setPopErr("")
+        setPopErr("");
         if (!res.data.errors) {
           setPopup(false);
-          
         } else {
           // setPopErr(res.data.name)
- 
         }
       }
     } catch (err) {
@@ -181,12 +215,18 @@ const Context = ({ children }) => {
         AccordionList,
         popup,
         setPopup,
+        theId,
+        setTheId,
         leave,
+        isLoading,
+        setIsLoading,
         setLeave,
         CreateAccordion,
         getStudents,
         popErr,
-        setPopErr
+        setPopErr,
+        ApproveRequest,
+        DeleteRequest
       }}
     >
       {children}

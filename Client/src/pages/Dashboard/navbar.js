@@ -4,6 +4,8 @@ import { ItemContext } from "../../context/store";
 
 const NavComponent = () => {
   const name = localStorage.getItem("name")
+  const is_admin = localStorage.getItem("is_admin");
+  const admin = JSON.parse(is_admin);
   return (
     <section className="">
       <div className="wrapper justify-start sm:justify-between  border-gray-200  border-b-[1px]  h-20 bg-white flex sm:py-6 w-full px-6 item-center">
@@ -25,7 +27,7 @@ const NavComponent = () => {
           </div>
           <div className="">
             <p className="text-[12px]  text-gray-400 ">{name}</p>
-            <p className="text-[12px] text-gray-600 font-bold">Student</p>
+            <p className="text-[12px] text-gray-600 font-bold">{admin ? "Admin" :"Student"}</p>
           </div>
         </div>
       </div>

@@ -71,9 +71,9 @@ export const UpdateLeave = async (
   res: express.Response
 ) => {
   const { id } = req.params;
-  const { email, status } = req.body;
+  const { status } = req.body;
 
-  if (!email || !status) {
+  if (!status) {
     let result = {
       error: true,
       message: "Invalid Credentials",

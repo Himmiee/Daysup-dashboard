@@ -16,5 +16,5 @@ export default (router: express.Router) => {
   router.get("/leave/:email",viewLeave);
   router.get("/leaveList/",viewAllLeave);
   router.put("/updateLeaveStatus/:id", UpdateLeave);
-  router.delete("/deleteLeave/:id", verifyAdmin, deleteLeave);
+  router.delete("/deleteLeave/:id", deleteLeave);
 };
