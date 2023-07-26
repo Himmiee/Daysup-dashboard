@@ -14,7 +14,7 @@ const InputComponent = (props) => {
         onChange={handleChange}
         ref={inputRef}
         placeholder={name}
-        className="border-grey-600 border-[1px] h-8 w-[350px] sm:w-[415px] text-black my-2 px-2  rounded-lg text-[11px] font-medium inter"
+        className="border-grey-600 outline-none border-[1px] h-8 w-[350px] sm:w-[415px] text-black my-2 px-2  rounded-lg text-[11px] font-medium inter"
       />
       {type === "password" && (
         <button

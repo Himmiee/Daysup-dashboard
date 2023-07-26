@@ -63,7 +63,7 @@ const Dashboard = () => {
                 <div
                   className={
                     actState === "main"
-                      ? "sm:flex relative gap-5 sm:bg-[#4a4ae42f] p-3 sm:w-[72px] lg:w-60 rounded-l-md sm:border-r-4 border-[#1C1BCB]"
+                      ? "sm:flex relative gap-5 sm:bg-[#4a4ae42f] p-3 sm:w-[72px] transition-all lg:w-60 rounded-l-md sm:border-r-4 border-[#1C1BCB]"
                       : "sm:flex gap-5 p-3 text-black"
                   }
                 >
@@ -106,7 +106,7 @@ const Dashboard = () => {
                 <div
                   className={
                     actState === "event"
-                      ? "sm:flex relative gap-5 sm:bg-[#4a4ae42f] p-3 sm:w-[72px] lg:w-60 rounded-l-md sm:border-r-4 border-[#1C1BCB]"
+                      ? "sm:flex relative gap-5 sm:bg-[#4a4ae42f] transition-all p-3 sm:w-[72px] lg:w-60 rounded-l-md sm:border-r-4 border-[#1C1BCB]"
                       : "sm:flex gap-5 p-3 text-black"
                   }
                 >
@@ -148,7 +148,7 @@ const Dashboard = () => {
                 <div
                   className={
                     actState === "user"
-                      ? "sm:flex relative gap-5 sm:bg-[#4a4ae42f] p-3 sm:w-[72px] lg:w-60 rounded-l-md sm:border-r-4 border-[#1C1BCB]"
+                      ? "sm:flex relative gap-5 sm:bg-[#4a4ae42f] transition-all p-3 sm:w-[72px] lg:w-60 rounded-l-md sm:border-r-4 border-[#1C1BCB]"
                       : "sm:flex gap-5 p-3 text-black"
                   }
                 >
@@ -190,7 +190,7 @@ const Dashboard = () => {
                 <div
                   className={
                     actState === "notification"
-                      ? "sm:flex relative gap-5 sm:bg-[#4a4ae42f] p-3 sm:w-[72px] lg:w-60 rounded-l-md sm:border-r-4 border-[#1C1BCB]"
+                      ? "sm:flex relative gap-5 sm:bg-[#4a4ae42f] p-3 sm:w-[72px] transition-all lg:w-60 rounded-l-md sm:border-r-4 border-[#1C1BCB]"
                       : "sm:flex gap-5 p-3 text-black"
                   }
                 >
@@ -232,7 +232,7 @@ const Dashboard = () => {
                 <div
                   className={
                     actState === "settings"
-                      ? "sm:flex relative gap-5 sm:bg-[#4a4ae42f] p-3 sm:w-[72px] lg:w-60 rounded-l-md sm:border-r-4 border-[#1C1BCB]"
+                      ? "sm:flex relative gap-5 sm:bg-[#4a4ae42f] p-3 sm:w-[72px] transition-all lg:w-60 rounded-l-md sm:border-r-4 border-[#1C1BCB]"
                       : "sm:flex gap-5 p-3 text-black"
                   }
                 >
@@ -264,7 +264,7 @@ const Dashboard = () => {
               localStorage.clear();
               navigate("/");
             }}
-            className="hidden text-grey-400 lg:ml-6 mx-5 sm:flex gap-5 mt-40 lg:w-48 rounded-xl p-3 justify-center hover:bg-[#1C1BCB] cursor-pointer text-white bg-[#4a4ae4]"
+            className="hidden text-grey-400 lg:ml-6 mx-5 sm:flex gap-5 mt-40 lg:w-48 transition-all rounded-xl p-3 justify-center hover:bg-[#1C1BCB] cursor-pointer text-white bg-[#4a4ae4]"
           >
             <p className="text-base font-semibold hidden lg:flex">Logout</p>
             <div>

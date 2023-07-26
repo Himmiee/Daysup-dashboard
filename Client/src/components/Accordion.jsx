@@ -5,7 +5,6 @@ import { BsX, BsCheck2 } from "react-icons/bs";
 import { ItemContext } from "../context/store";
 
 const AccordionComponent = ({ data, i }) => {
-  // const [data, useData] = useState(AccordionMenu);
   const is_admin = localStorage.getItem("is_admin");
   const admin = JSON.parse(is_admin);
   const { setTheId, ApproveRequest, theId, DeleteRequest, leaveList } =
@@ -46,13 +45,13 @@ const AccordionComponent = ({ data, i }) => {
                   className="middle cursor-pointer "
                 >
                   <div className="flex gap-3 items-center">
-                    <p className="text-[14px] font-bold">{data.name}</p>
+                    <p className="text-[14px] font-bold">{data?.name}</p>
                     <div className="text-[10px] bg-gray-100 w-14 h-4 flex justify-center font-bold text-gray-400 rounded-md">
-                      {data.status}
+                      {data?.status}
                     </div>
                   </div>
                   <div className="text-[10px] lg:text-[12px]  text-gray-400">
-                    {data.email}
+                    {data?.email}
                   </div>
                 </div>
               ) : (
@@ -68,12 +67,12 @@ const AccordionComponent = ({ data, i }) => {
                 </div>
               )}
             </div>
-            {admin && data.status === "pending" ? (
+            {admin && data?.status === "pending" ? (
               <div className="hidden sm:flex other">
                 <Button
                   title="Approve"
                   handleClick={() => {
-                    setTheId(data._id);
+                    setTheId(data?._id);
                     console.log(theId);
                     ApproveRequest();
                     leaveList();
@@ -82,8 +81,8 @@ const AccordionComponent = ({ data, i }) => {
                 />
                 <Button
                   handleClick={() => {
-                    setTheId(data._id);
-                    console.log(data.status);
+                    setTheId(data?._id);
+                    console.log(data?.status);
                     DeleteRequest();
                     leaveList();
                   }}
@@ -94,18 +93,18 @@ const AccordionComponent = ({ data, i }) => {
             ) : (
               <div className="mx-6 w-20 rounded-full  h-8 text-gray-400 bg-gray-200 ">
                 <p className="text-[12px] flex items-center pt-2 justify-center">
-                  {data.status}
+                  {data?.status}
                 </p>
               </div>
             )}
-            {admin && data.status !== "pending" ? (
+            {admin && data?.status !== "pending" ? (
               ""
             ) : (
               <div className="other  flex sm:hidden px-3">
                 <div
                   onClick={() => {
-                    setTheId(data._id);
-                    console.log(data.status);
+                    setTheId(data?._id);
+                    console.log(data?.status);
                     ApproveRequest();
                     leaveList();
                   }}
@@ -115,8 +114,8 @@ const AccordionComponent = ({ data, i }) => {
                 </div>
                 <div
                   onClick={() => {
-                    setTheId(data._id);
-                    console.log(data.status);
+                    setTheId(data?._id);
+                    console.log(data?.status);
                     DeleteRequest();
                     leaveList();
                   }}
@@ -135,7 +134,7 @@ const AccordionComponent = ({ data, i }) => {
               : "hidden"
           }
         >
-          <div className="text-[12px] p-4 text-gray-700">{data.leave}</div>
+          <div className="text-[12px] p-4 text-gray-700">{data?.leave}</div>
         </div>
       </li>
     </ul>

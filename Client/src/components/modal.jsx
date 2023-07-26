@@ -10,7 +10,7 @@ const ModalComponent = (props) => {
     <div className="overlap fixed z-10 inset-0 ">
       <div
         onClick={() => setPopup(false)}
-        className="overlap fixed w-full h-full bg-gray-200 bg-opacity-50 inset-0 "
+        className="overlap cursor-pointer fixed w-full h-full bg-gray-200 bg-opacity-50 inset-0 "
       ></div>
       <div className="flex absolute bottom-0 sm:relative justify-center sm:pt-44 ">
         <div className="container w-screen  sm:w-[450px]  sm:rounded-xl h-64 sm:h-48">
@@ -30,7 +30,7 @@ const ModalComponent = (props) => {
                 <p className="text-[12px] font-bold">{field}:</p>
                 <textarea
                   onChange={onChange}
-                  className="text-[12px] p-2 border-[1px] mt-1 border-gray-200"
+                  className="text-[12px] outline-none p-2 border-[1px] mt-1 border-gray-200"
                   name="Details"
                   placeholder="minimum of 12 letters"
                   id=""
@@ -69,7 +69,7 @@ export const StudentModal = (props) => {
     <div className="overlap fixed z-10 inset-0 ">
       <div
         onClick={() => setPopup(false)}
-        className="overlap fixed w-full h-full bg-gray-200 bg-opacity-50 inset-0 "
+        className="overlap cursor-pointer fixed w-full h-full bg-gray-200 bg-opacity-50 inset-0 "
       ></div>
       <div className="flex absolute bottom-8 sm:relative justify-center sm:pt-44 ">
         <div className="container w-screen  sm:w-[450px]  sm:rounded-xl h-64 sm:h-48">
@@ -88,7 +88,7 @@ export const StudentModal = (props) => {
                 <p className="text-[12px] font-bold">{field}:</p>
                 <input
                   onChange={(e) => setEmail(e.target.value)}
-                  className="my-2 text-[10px] p-2 w-80 sm:w-96 h-8 rounded-md border-[1px] mt-1 border-gray-200"
+                  className="my-2 outline-none text-[10px] p-2 w-80 sm:w-96 h-8 rounded-md border-[1px] mt-1 border-gray-200"
                   name="Details"
                   placeholder="email"
                 />
@@ -98,7 +98,7 @@ export const StudentModal = (props) => {
                   <p className="text-[12px] font-bold">{field2}:</p>
                   <input
                     onChange={(e) => setRegNumber(e.target.value)}
-                    className="my-2 text-[10px] p-2 w-36 sm:w-44 h-8 rounded-md border-[1px] mt-1 border-gray-200"
+                    className="my-2 outline-none text-[10px] p-2 w-36 sm:w-44 h-8 rounded-md border-[1px] mt-1 border-gray-200"
                     name="Details"
                     placeholder="regNum"
                   />
@@ -107,7 +107,7 @@ export const StudentModal = (props) => {
                   <p className="text-[12px] font-bold">{field3}:</p>
                   <input
                     onChange={(e) => setName(e.target.value)}
-                    className="my-2 text-[10px] p-2 w-36 sm:w-44 h-8 rounded-md border-[1px] mt-1 border-gray-200"
+                    className="my-2 outline-none text-[10px] p-2 w-36 sm:w-44 h-8 rounded-md border-[1px] mt-1 border-gray-200"
                     name="name"
                     placeholder="name"
                   />
@@ -118,7 +118,7 @@ export const StudentModal = (props) => {
               <Button
                 title="submit"
                 handleClick={handleSubmit}
-                className="w-24 text-white h-7 text-sm rounded-lg bg-[#a2a2e4] hover:bg-[#4343ac]"
+                className="w-24  text-white h-7 text-sm rounded-lg bg-[#a2a2e4] hover:bg-[#4343ac]"
               />
             </div>
           </div>
