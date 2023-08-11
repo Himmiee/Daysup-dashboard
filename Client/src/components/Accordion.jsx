@@ -97,9 +97,7 @@ const AccordionComponent = ({ data, i }) => {
                 </p>
               </div>
             )}
-            {admin && data?.status !== "pending" ? (
-              ""
-            ) : (
+            {admin && data?.status == "pending" ? (
               <div className="other  flex sm:hidden px-3">
                 <div
                   onClick={() => {
@@ -124,6 +122,8 @@ const AccordionComponent = ({ data, i }) => {
                   <BsX size={24} />
                 </div>
               </div>
+            ) : (
+              ""
             )}
           </div>
         </div>
