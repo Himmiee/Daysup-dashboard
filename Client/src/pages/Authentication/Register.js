@@ -84,8 +84,8 @@ const RegisterComponent = () => {
                   className=""
                 />
               </label>
-              <div className="more -ml-1 my-2 grid grid-cols-2 sm:flex w-[330px] sm:w-[405px] gap-6  sm:gap-2">
-                <label className="font-bold ml-1 text-[12px] sm:w-1/2">
+              <div className="more sm:-ml-1 my-2 sm:flex w-[350px]  sm:w-[405px] gap-6  sm:gap-2">
+                <label className="font-bold ml-1 text-[12px]  sm:w-1/2">
                   Email:
                   <InputComponent
                     handleChange={(e) => {
@@ -95,7 +95,7 @@ const RegisterComponent = () => {
                     className=""
                   />
                 </label>
-                <label className="font-bold text-[12px] ml-1 sm:w-1/2">
+                <label className="font-bold text-[12px] sm:ml-1 sm:w-1/2">
                   RegNum:
                   <InputComponent
                     handleChange={(e) => {
@@ -106,7 +106,7 @@ const RegisterComponent = () => {
                   />
                 </label>
               </div>
-              <label className="font-bold ml-1 text-[12px]">
+              <label className="font-bold sm:ml-1 text-[12px]">
                 Password:
                 <InputComponent
                   handleChange={(e) => {
