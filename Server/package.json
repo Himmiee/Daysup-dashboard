@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
-  "type": "module",
+
   
   "scripts": {
     "build": "npm install && tsc",
-    "start": "nodemon dist/index.js",
+    "start": "nodemon index.js",
     "test": "mocha"
     
   },
