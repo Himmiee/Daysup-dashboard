@@ -2,14 +2,12 @@
   "name": "dhayshup",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
-
+  "main": "index.ts",
   
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q index.js\""
+    "test": "mocha"
+    
   },
   
   "keywords": [],
