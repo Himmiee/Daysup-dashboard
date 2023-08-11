@@ -66,8 +66,8 @@ const RegisterComponent = () => {
         <div className="logo absolute top-[30%] sm:top-[25%] lg:opacity-100 lg:relative lg:top-1 lg:left-0 lg:flex lg:justify-start  sm:opacity-50 opacity-20 sm:left-[48%] flex ml-14 lg:mb-3 lg:mt-12 ">
           <img src="../bare.png" className=" lg:w-24 w-96 lg:h-18" alt="" />
         </div>
-        <div className="lg:ml-20  m-auto mt-56 sm:mt-64 lg:mt-4 ">
-          <p className="font-semibold text-[12px] sm:text-sm flex justify-center lg:justify-start sm:grid">
+        <div className="lg:ml-20 m-auto mt-56 sm:mt-64 lg:mt-4 ">
+          <p className="font-semibold text-[12px] sm:text-sm flex justify-center items-center lg:justify-start sm:grid">
             Student Information should be filled with student's registration
             <br /> details and info accordingly.{" "}
           </p>
@@ -84,8 +84,8 @@ const RegisterComponent = () => {
                   className=""
                 />
               </label>
-              <div className="more -ml-1 my-2 flex w-[320px] sm:w-[405px] gap-4 sm:gap-2">
-                <label className="font-bold ml-1 text-[12px] w-1/2">
+              <div className="more -ml-1 my-2 grid grid-cols-2 sm:flex w-[330px] sm:w-[405px] gap-6  sm:gap-2">
+                <label className="font-bold ml-1 text-[12px] sm:w-1/2">
                   Email:
                   <InputComponent
                     handleChange={(e) => {
@@ -95,7 +95,7 @@ const RegisterComponent = () => {
                     className=""
                   />
                 </label>
-                <label className="font-bold ml-1 text-[12px] w-1/2">
+                <label className="font-bold text-[12px] ml-1 sm:w-1/2">
                   RegNum:
                   <InputComponent
                     handleChange={(e) => {
