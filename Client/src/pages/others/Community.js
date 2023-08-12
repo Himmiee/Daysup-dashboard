@@ -77,7 +77,7 @@ const UsersComponent = () => {
               >
                 <IoMdAddCircleOutline className="" />
                 <Button
-                  handleClick={() => setPopup(true)}
+                  handleClick={admin ? () => setPopup(true) : () => setPopup(false)}
                   title="Add Student"
                   className="h-7 rounded-md text-[12px] font-light w-24  "
                 />

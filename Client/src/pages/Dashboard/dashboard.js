@@ -33,17 +33,19 @@ const Dashboard = () => {
       <div className="sm:flex sm:h-[100vh]">
         <div className=" w-full bottom-0 fixed sm:relative border-gray-200 sm:border-t-0 border-t-2 ">
           <div className="logo">
-            <img
-              src="../purple.png"
-              className=" lg:w-48 hidden lg:flex h-24 -ml-2 bg-white mt-2 mb-6"
-              alt="logo"
-            />
-            <img
-              src="../bare.png"
-              className="w-24 -ml-1 hidden sm:flex
+            <Link to={"/main"}>
+              <img
+                src="../purple.png"
+                className=" lg:w-48 cursor-pointer hidden lg:flex h-24 -ml-2 bg-white mt-2 mb-6"
+                alt="logo"
+              />
+              <img
+                src="../bare.png"
+                className="w-24 -ml-1 hidden sm:flex
          lg:hidden h-18 mt-5 mb-11"
-              alt="logo"
-            />
+                alt="logo"
+              />
+            </Link>
           </div>
           <ul className=" sm:relative sm:ml-5 flex justify-around sm:flex-col">
             <NavLink
@@ -74,7 +76,11 @@ const Dashboard = () => {
                         : "text-sm  lg:text-gray-400 text-[#1b1bcb54]"
                     }
                   >
-                    {actState === "main" ? <BsGridFill size={20} /> : <BsGrid size={20} />}
+                    {actState === "main" ? (
+                      <BsGridFill size={20} />
+                    ) : (
+                      <BsGrid size={20} />
+                    )}
                   </div>
                   <p
                     className={
@@ -117,7 +123,11 @@ const Dashboard = () => {
                         : "text-sm  lg:text-gray-400 text-[#1b1bcb54]"
                     }
                   >
-                    {actState === "event" ? (<BsCalendarEventFill size={19} />) : (<BsCalendarEvent  size={19}/>)}
+                    {actState === "event" ? (
+                      <BsCalendarEventFill size={19} />
+                    ) : (
+                      <BsCalendarEvent size={19} />
+                    )}
                   </div>
                   <p
                     className={
@@ -159,7 +169,11 @@ const Dashboard = () => {
                         : "text-sm lg:text-gray-400 text-[#1b1bcb54]"
                     }
                   >
-                    {actState === "user" ? (<HiUserGroup size={20} />) : (<HiOutlineUserGroup size={20} />)}
+                    {actState === "user" ? (
+                      <HiUserGroup size={20} />
+                    ) : (
+                      <HiOutlineUserGroup size={20} />
+                    )}
                   </div>
                   <p
                     className={
@@ -201,7 +215,11 @@ const Dashboard = () => {
                         : "text-sm  lg:text-gray-400 text-[#1b1bcb54]"
                     }
                   >
-                    {actState === "notification" ? (<IoMdNotifications size={21} />) : (<IoMdNotificationsOutline size={21}/>)}
+                    {actState === "notification" ? (
+                      <IoMdNotifications size={21} />
+                    ) : (
+                      <IoMdNotificationsOutline size={21} />
+                    )}
                   </div>
                   <p
                     className={
@@ -243,7 +261,11 @@ const Dashboard = () => {
                         : "text-sm  lg:text-gray-400 text-[#1b1bcb54]"
                     }
                   >
-                    {actState === "settings" ? (<RiSettings5Fill size={21}/>) : (<RiSettings5Line size={21}/>)}
+                    {actState === "settings" ? (
+                      <RiSettings5Fill size={21} />
+                    ) : (
+                      <RiSettings5Line size={21} />
+                    )}
                   </div>
                   <p
                     className={
