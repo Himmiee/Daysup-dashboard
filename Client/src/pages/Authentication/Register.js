@@ -1,9 +1,10 @@
 import React from "react";
-import { Link , useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ItemContext } from "../../context/store";
 import InputComponent from "../../components/inputComponent";
 import Button from "../../components/Button";
+import { PopupModalComponent } from "../../components/modal";
 
 const RegisterComponent = () => {
   const {
@@ -26,6 +27,7 @@ const RegisterComponent = () => {
     setShowNav(false);
   }, []);
   const handleClick = () => {
+    setIsLoading(true);
     console.log("dey play.");
     RegisterUser();
   };
@@ -67,12 +69,12 @@ const RegisterComponent = () => {
           <img src="../bare.png" className=" lg:w-24 w-96 lg:h-18" alt="" />
         </div>
         <div className="lg:ml-20  m-auto mt-56 sm:mt-64 lg:mt-4 ">
-<div>
+          <div>
             <p className="font-semibold text-[12px] sm:text-sm flex justify-center items-center lg:justify-start sm:grid">
-            Student Information should be filled with student's registration
-            <br /> details and info accordingly.{" "}
-          </p>
-</div>
+              Student Information should be filled with student's registration
+              <br /> details and info accordingly.{" "}
+            </p>
+          </div>
 
           <div className="flex justify-center lg:justify-start">
             <div className="wrap mt-3">
@@ -132,21 +134,21 @@ const RegisterComponent = () => {
                 !email.includes("@") ||
                 !email.includes(".")
               }
-              title={isLoading ? "loading..." : "SignIn"}
+              title={isLoading ? "Signing..." : "SignIn"}
               className={
                 isLoading
-                  ? "bg-[#3c3cc694]  text-gray-300   w-[350px] sm:w-[415px] rounded-lg h-9 "
+                  ? "bg-[#3c3cc6d7]  text-gray-300   w-[350px] sm:w-[415px] rounded-lg h-9 "
                   : "bg-[#3D3CC6] disabled:text-gray-200 text-white disabled:bg-[#878888bd]  w-[350px] sm:w-[415px] rounded-lg h-9 "
               }
             />
           </div>
           {/* {!(email.includes("@") || email.includes(".")) && (
-            <div className="flex justify-center text-[10px] text-red-500">
+            <div className="flex lg:w-[415px]  justify-center text-[10px] text-red-500">
               <p>Incorrect email format.</p>
             </div>
           )} */}
           {err && (
-            <p className="flex justify-center text-red-400 text-[10px]">
+            <p className="flex lg:w-[415px]  justify-center text-red-400 text-[10px]">
               {err}
             </p>
           )}

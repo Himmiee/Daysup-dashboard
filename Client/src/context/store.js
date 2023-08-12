@@ -13,6 +13,9 @@ const Context = ({ children }) => {
   const [popup, setPopup] = useState(false);
   const [password, setPassword] = useState("");
   const [theId, setTheId] = useState("");
+  const [popupMsg, setPopUpMsg] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errMsg,setErrMessage] = useState("");
   const [leave, setLeave] = useState("");
   const [showNav, setShowNav] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
@@ -32,14 +35,17 @@ const Context = ({ children }) => {
       });
 
       if (res.status !== 400 || res.status !== 401) {
+        // setPopUpMsg("User Created Successfully");
         console.log(res.data);
-        setIsLoading(true);
         setErr(" ");
         dispatch({ type: "USER_DETAILS", payload: res.data });
         navigate("/");
+        setPopUpMsg(true)
+        setSuccessMsg("User Created Successfully")
         setIsLoading(false);
-      }
+       }
     } catch (err) {
+      setIsLoading(false);
       console.log(err.response.data);
       setErr(err.response.data);
     }
@@ -70,7 +76,6 @@ const Context = ({ children }) => {
         password,
       });
       if (res.status !== 400 || res.status !== 401) {
-        setIsLoading(true);
         console.log(res.data);
         setLoginErr(" ");
         localStorage.setItem("email", res?.data.email);
@@ -80,9 +85,13 @@ const Context = ({ children }) => {
         localStorage.setItem("is_authenticated", true);
         dispatch({ type: "LOGIN_DETAILS", payload: res?.data });
         navigate("/main");
+        setPopUpMsg(true)
+        setSuccessMsg("User login Successful")
         setIsLoading(false);
+
       }
     } catch (err) {
+      setIsLoading(false);
       console.log(err.response.data);
       setLoginErr(err.response.data);
     }
@@ -226,7 +235,13 @@ const Context = ({ children }) => {
         popErr,
         setPopErr,
         ApproveRequest,
-        DeleteRequest
+        DeleteRequest,
+        popupMsg,
+        setPopUpMsg,
+        successMsg,
+        setSuccessMsg,
+        errMsg,
+        setErrMessage
       }}
     >
       {children}

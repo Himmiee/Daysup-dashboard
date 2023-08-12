@@ -1,10 +1,10 @@
 import InputComponent from "./inputComponent";
 import Button from "./Button";
-import { BsArrowDownCircle } from "react-icons/bs";
+import { BsArrowDownCircle, BsX, BsCheckCircle } from "react-icons/bs";
 import { ItemContext } from "../context/store";
 const ModalComponent = (props) => {
   const { title, field, handleSubmit, onChange } = props;
-  const { popup, setPopup ,popErr} = ItemContext();
+  const { popup, setPopup, popErr } = ItemContext();
 
   return (
     <div className="overlap fixed z-10 inset-0 ">
@@ -16,9 +16,13 @@ const ModalComponent = (props) => {
         <div className="container w-screen  sm:w-[450px]  sm:rounded-xl h-64 sm:h-48">
           <div className="header hidden w-full h-12 bg-[#4343ac] sm:flex justify-start items-center rounded-t">
             <p className="text-white px-4">{title}</p>
+            <BsX
+              onClick={() => setPopup(false)}
+              className="hidden sm:flex text-white ml-auto mr-3 cursor-pointer"
+              size={22}
+            />
           </div>
           <div className="body bg-white h-72 sm:h-44 rounded-t-3xl sm:rounded-t-none sm:rounded-b-md pt-5 sm:pt-4">
- 
             <p className="sm:hidden flex justify-center font-bold text-[#4343ac] text-lg">
               EXIAT
             </p>
@@ -40,10 +44,10 @@ const ModalComponent = (props) => {
               </label>
             </div>
             {popErr && (
-            <p className="flex justify-center text-red-700 text-[10px]">
-              {popErr}
-            </p>
-          )}
+              <p className="flex justify-center text-red-700 text-[10px]">
+                {popErr}
+              </p>
+            )}
             <div className="btn flex justify-center pt-3">
               <Button
                 title="submit"
@@ -51,7 +55,6 @@ const ModalComponent = (props) => {
                 className="w-24 text-white h-7 text-sm rounded-lg bg-[#a2a2e4] hover:bg-[#4343ac]"
               />
             </div>
-
           </div>
         </div>
       </div>
@@ -63,7 +66,8 @@ export default ModalComponent;
 
 export const StudentModal = (props) => {
   const { title, field, field2, field3, handleSubmit, onChange } = props;
-  const { popup, setPopup ,setName, setEmail, setRegNumber, popErr} = ItemContext();
+  const { popup, setPopup, setName, setEmail, setRegNumber, popErr } =
+    ItemContext();
 
   return (
     <div className="overlap fixed z-10 inset-0 ">
@@ -75,12 +79,17 @@ export const StudentModal = (props) => {
         <div className="container w-screen  sm:w-[450px]  sm:rounded-xl h-64 sm:h-48">
           <div className="header hidden w-full h-12 bg-[#4343ac] sm:flex justify-start items-center rounded-t">
             <p className="text-white px-4">{title}</p>
+            <BsX
+              onClick={() => setPopup(false)}
+              className="text-white hidden sm:flex ml-auto mr-3 cursor-pointer"
+              size={22}
+            />
           </div>
           <div className="body bg-white h-96 sm:h-52 rounded-t-3xl sm:rounded-t-none sm:rounded-b-md pt-5 sm:pt-4">
             <p className="sm:hidden flex justify-center font-bold text-[#4343ac] text-lg">
               {title}
             </p>
-            <div className="flex justify-center sm:hidden my-4">
+              <div className="flex justify-center sm:hidden my-4">
               <BsArrowDownCircle size={24} className="text-[#4343ac]" />
             </div>
             <div className="grid justify-center sm:mt-0">
@@ -123,6 +132,33 @@ export const StudentModal = (props) => {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  );
+};
+
+export const PopupModalComponent = (props) => {
+  const { title, field, handleSubmit, onChange } = props;
+  const { popup, setPopup, popErr, setPopUpMsg, popupMsg, successMsg } =
+    ItemContext();
+
+  return (
+    <div className="overlap fixed z-10 inset-0 w-full ">
+      {/* <div
+        onClick={() => setPopup(false)}
+        className="overlap cursor-pointer fixed w-full h-full bg-gray-200 bg-opacity-50 inset-0 "
+      ></div> */}
+      <div className="bg-gray-100 m-3 gap-2 flex ml-auto justify-end border-[#4343ac] border-l-4  w-64 h-12">
+        <div className="flex justify-center items-center gap-2">
+          <BsCheckCircle className="text-[#4343ac]" />
+          <p className="text-sm">{successMsg}</p>
+        </div>
+
+        <BsX
+          size={24}
+          className="text-gray-300 cursor-pointer pr-2"
+          onClick={() => setPopUpMsg(false)}
+        />
       </div>
     </div>
   );

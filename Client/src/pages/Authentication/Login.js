@@ -18,6 +18,7 @@ const LoginComponent = () => {
     UserLogin,
   } = ItemContext();
   const handleClick = () => {
+    setIsLoading(true);
     console.log("dey play.");
     UserLogin();
   };
@@ -69,16 +70,21 @@ const LoginComponent = () => {
                 !email.includes("@") ||
                 !email.includes(".")
               }
-              title={isLoading ? "loading..." : "SignIn"}
+              title={isLoading ? "Signing..." : "SignIn"}
               className={
                 isLoading
-                  ? "bg-[#3c3cc694]  text-gray-300   w-[350px] sm:w-[415px] rounded-lg h-9 "
+                  ? "bg-[#3c3cc6cc]  text-gray-300  w-[350px] sm:w-[415px] rounded-lg h-9 "
                   : "bg-[#3D3CC6] disabled:text-gray-200 text-white disabled:bg-[#878888bd]  w-[350px] sm:w-[415px] rounded-lg h-9 "
               }
             />
           </div>
+          {/* {!(email.includes("@") || email.includes(".")) && (
+            <div className="flex lg:w-[415px]  justify-center text-[10px] text-red-500">
+              <p>Incorrect email format.</p>
+            </div>
+          )} */}
           {loginErr && (
-            <p className="flex justify-center text-red-400 text-[10px]">
+            <p className="flex  lg:w-[415px] justify-center  text-red-400 text-[10px]">
               {loginErr}
             </p>
           )}
