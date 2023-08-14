@@ -2,13 +2,14 @@
   "name": "dhayshup",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
 
   
   "scripts": {
     "build": "npm install && tsc",
-    "start": "nodemon index.js",
+    "start": "nodemon dist/index.js",
     "test": "mocha"
+
     
   },
   

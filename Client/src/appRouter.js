@@ -17,6 +17,15 @@ import { PopupModalComponent } from "./components/modal";
 const AppRouter = () => {
   const { showNav, popErr, popupMsg, successMsg } = ItemContext();
   const location = useLocation();
+
+  let name = "Daysup";
+
+  window.addEventListener("blur", () => {
+    document.title = "Daysup misses you.";
+  });
+  window.addEventListener("focus", () => {
+    document.title = name;
+  });
   // const EventComponent = lazy(() => import("./pages/others/event"));
   // const Dashboard = lazy(() => import("./pages/Dashboard/dashboard"));
   // const MainComponent = lazy(() => import("./pages/others/main"));
