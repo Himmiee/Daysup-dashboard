@@ -22,12 +22,12 @@ const Context = ({ children }) => {
   const [err, setErr] = useState("");
   const [loginErr, setLoginErr] = useState("");
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
-  let baseUrl = "http://localhost:3050/";
+  let baseUrl = "https://daysup.onrender.com/";
   let is_authenticated;
   const navigate = useNavigate();
   const RegisterUser = async () => {
     try {
-      const res = await axios.post("http://localhost:3050/user/auth", {
+      const res = await axios.post("https://daysup.onrender.com/user/auth", {
         name,
         email,
         password,
@@ -52,7 +52,7 @@ const Context = ({ children }) => {
   };
   const RegisterStudents = async () => {
     try {
-      const res = await axios.post("http://localhost:3050/addStudent", {
+      const res = await axios.post("https://daysup.onrender.com/addStudent", {
         name,
         email,
         regNumber,
@@ -71,7 +71,7 @@ const Context = ({ children }) => {
 
   const UserLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:3050/user/login", {
+      const res = await axios.post("https://daysup.onrender.com/user/login", {
         email,
         password,
       });
@@ -100,7 +100,7 @@ const Context = ({ children }) => {
     try {
       const email = localStorage.getItem("email");
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:3050/leave/${email}`, {
+      const res = await axios.get(`https://daysup.onrender.com/leave/${email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -114,7 +114,7 @@ const Context = ({ children }) => {
   const ApproveRequest = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:3050/updateLeaveStatus/${theId}`,
+        `https://daysup.onrender.com/updateLeaveStatus/${theId}`,
         {
           status: "completed",
         }
@@ -131,7 +131,7 @@ const Context = ({ children }) => {
   const DeleteRequest = async () => {
     try {
       const res = await axios.delete(
-        `http://localhost:3050/deleteLeave/${theId}`,
+        `https://daysup.onrender.com/deleteLeave/${theId}`,
       );
 
       if (res.status !== 400 || res.status !== 401) {
@@ -145,7 +145,7 @@ const Context = ({ children }) => {
   const leaveList = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:3050/leaveList`, {
+      const res = await axios.get(`https://daysup.onrender.com/leaveList`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -160,7 +160,7 @@ const Context = ({ children }) => {
   const getStudents = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:3050/users", {
+      const res = await axios.get("https://daysup.onrender.com/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -177,7 +177,7 @@ const Context = ({ children }) => {
       const name = localStorage.getItem("name");
       const email = localStorage.getItem("email");
       console.log(name, email, leave);
-      const res = await axios.post("http://localhost:3050/leave", {
+      const res = await axios.post("https://daysup.onrender.com/leave", {
         name: name,
         email: email,
         leave,
