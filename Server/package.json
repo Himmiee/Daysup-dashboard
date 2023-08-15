@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type":"module",
   
 
   
@@ -10,8 +11,6 @@
     "build": "npm install && tsc",
     "start": "nodemon dist/index.js",
     "test": "mocha"
-
-    
   },
   
   "keywords": [],
