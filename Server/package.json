@@ -3,17 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type":"module",
 
   
   "scripts": {
-    "build": "npm install && tsc",
-    "start": "nodemon dist/index.js",
-    "test": "mocha"
-
-    
-  },
+    "compile": "tsc -p tsconfig.json",
+    "start": "ts-node index.ts",
+    "tsc": "tsc -w index.ts",
+    "dev": "tsx watch index.ts",
+    "server": "nodemon dist/index.ts",
+    "prod": "tsc && node dist/index.js",
+    "build": "npm install && tsc"
   
+  },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
