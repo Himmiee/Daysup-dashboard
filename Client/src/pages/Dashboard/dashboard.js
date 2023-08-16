@@ -31,7 +31,7 @@ const Dashboard = () => {
   return (
     <section className=" max-h-full">
       <div className="sm:flex sm:h-[100vh]">
-        <div className=" w-full bottom-0 fixed sm:relative border-gray-200 sm:border-t-0 border-t-2 ">
+        <div className=" w-full bottom-0 bg-white mt-2 sm:mt-0 fixed sm:relative border-gray-200 sm:border-t-0 border-t-2 ">
           <div className="logo">
             <Link to={"/main"}>
               <img

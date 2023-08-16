@@ -90,7 +90,7 @@ const MainComponent = () => {
               <p className="flex justify-center font-medium text-sm text-[#6868c5]">Nothing Here yet!.</p>
             </div>
           </div>
-          <div className=" my-3 sm:my-0 h-80 shadow-sm   rounded-md border-gray-100 border-[1px] ">
+          <div className=" my-3 sm:my-0 h-80 shadow-sm rounded-md border-gray-100 border-[1px] ">
             <p className="p-2 px-4 font-bold text-[16px]">Our Programs</p>
             <div className="px-4 my-2 cursor-pointer">
               {data?.map((item, i) => {

@@ -8,7 +8,7 @@ const UserCard = ({data}) => {
         </div>
         <div className="flex justify-between items-center font-bold pt-2 text-sm">
           <p>{data.name}</p>
-          <div className="bg-red-200 text-red-500 w-10 justify-center p-2 rounded-md h-3 text-[10px] items-center flex">active</div>
+          <div className="bg-green-200 text-green-500 w-10 justify-center p-2 rounded-md h-3 text-[10px] items-center flex">active</div>
         </div>
       </div>
     </section>

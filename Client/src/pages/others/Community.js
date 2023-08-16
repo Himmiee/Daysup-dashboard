@@ -4,7 +4,7 @@ import NavComponent from "../Dashboard/navbar";
 import Button from "../../components/Button";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { CiSaveUp1 } from "react-icons/ci";
-import { BsFilter, BsSearch, BsArrowDown } from "react-icons/bs";
+import { BsFilter, BsSearch, BsArrowDown, BsPlus } from "react-icons/bs";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import UserCard from "../../components/usercard";
 import { StudentModal } from "../../components/modal";
@@ -77,7 +77,9 @@ const UsersComponent = () => {
               >
                 <IoMdAddCircleOutline className="" />
                 <Button
-                  handleClick={admin ? () => setPopup(true) : () => setPopup(false)}
+                  handleClick={
+                    admin ? () => setPopup(true) : () => setPopup(false)
+                  }
                   title="Add Student"
                   className="h-7 rounded-md text-[12px] font-light w-24  "
                 />

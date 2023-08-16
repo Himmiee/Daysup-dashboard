@@ -4,7 +4,7 @@ import axios from "axios";
 import NavComponent from "../Dashboard/navbar";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { CiSaveUp1 } from "react-icons/ci";
-import { BsFilter, BsSearch, BsArrowDown } from "react-icons/bs";
+import { BsFilter, BsSearch, BsArrowDown, BsPlus } from "react-icons/bs";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Button from "../../components/Button";
 import { AccordionMenu } from "../../utils/menu";
@@ -27,7 +27,7 @@ const EventComponent = () => {
     leaveList,
     state: { accordionDetails },
   } = ItemContext();
-  const [search,setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const is_admin = localStorage.getItem("is_admin");
   const admin = JSON.parse(is_admin);
 
@@ -64,7 +64,9 @@ const EventComponent = () => {
               <div className="flex items-center gap-2 ">
                 {" "}
                 <p className="font-bold text-lg ">Requests</p>
-                <p className="text-[10px] font-bold text-[#3D3CC6]">{accordionDetails?.length}</p>
+                <p className="text-[10px] font-bold text-[#3D3CC6]">
+                  {accordionDetails?.length}
+                </p>
               </div>
               <div className=" flex gap-4">
                 <div className="flex rounded-md items-center bg-white  border-[#3D3CC6] border-[1px] px-2 ">
@@ -96,17 +98,17 @@ const EventComponent = () => {
               </ul>
             </nav>
             <div className="search flex px-5 justify-between border-gray-100 border-[1px] shadow-sm rounded-md my-2 p-2">
-            <label htmlFor="" className="flex items-center gap-2">
-              <BsSearch size={12} className="" />
-              <input
-                type="text"
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-                placeholder="Search for students"
-                className="text-[12px] w-64 outline-none font-medium text-black"
-              />
-            </label>
+              <label htmlFor="" className="flex items-center gap-2">
+                <BsSearch size={12} className="" />
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                  placeholder="Search for students"
+                  className="text-[12px] w-64 outline-none font-medium text-black"
+                />
+              </label>
               <div className="flex gap-3 items-center ">
                 <BsFilter size={12} className="" />
                 <p className="text-sm pr-3 font-medium">Filter</p>
@@ -121,24 +123,36 @@ const EventComponent = () => {
             >
               Events
             </h2>
-            {accordionDetails?.filter((item) => 
-            {
-              return search.toLowerCase() === ""
-              ? item
-              : item.name.toLowerCase().includes(search)
-            } 
-            ).map((item, i) => {
-              return (
-                <div key={i}>
-                  <AccordionComponent data={item} index={i} />
+            <div className="tbl h-[95vh] overflow-y-auto">
+              {accordionDetails
+                ?.filter((item) => {
+                  return search.toLowerCase() === ""
+                    ? item
+                    : item.name.includes(search);
+                })
+                .map((item, i) => {
+                  return (
+                    <div key={i}>
+                      <AccordionComponent data={item} index={i} />
+                    </div>
+                  );
+                })}
+              {!accordionDetails.length && (
+                <div className="flex justify-center opacity-20">
+                  <img src="../bare.png" alt="" />
                 </div>
-              );
-            })}
-            {!accordionDetails.length && (
-              <div className="flex justify-center opacity-20">
-                <img src="../bare.png" alt="" />
-              </div>
-            )}
+              )}
+            </div>
+          </div>
+        </div>
+        <div
+          onClick={() => {
+            setPopup(true);
+          }}
+          className="absolute sm:hidden bottom-24 right-6"
+        >
+          <div className="bg-[#3d3cc6] hover:bg-[#3c3cc6bd] rounded-full cursor-pointer w-12 h-12 flex justify-center items-center ">
+            <BsPlus size={32} className="text-white " />
           </div>
         </div>
         <div className="s-side tbl hidden sm:grid sm:w-1/3 sm:h-full border-gray-300  sm:border-l-[1px]">
