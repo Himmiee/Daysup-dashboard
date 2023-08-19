@@ -63,9 +63,11 @@ const Context = ({ children }) => {
         setPopup(false);
         setPopUpMsg(true)
         setSuccessMsg("Student Created!")
+        setIsLoading(false);
         // dispatch({ type: "STUDENT_DETAILS", payload: res.data });
       }
     } catch (err) {
+      setIsLoading(false);
       console.log(err.response.data);
       setErr(err.response.data);
     }
@@ -125,9 +127,11 @@ const Context = ({ children }) => {
       if (res.status !== 400 || res.status !== 401) {
         setPopUpMsg(true)
         setSuccessMsg("Approved!")
+        setIsLoading(false);
         // console.log(res.data);
       }
     } catch (err) {
+      setIsLoading(false);
       console.log(err.response.data);
       setErr(err.response.data);
     }
@@ -141,8 +145,10 @@ const Context = ({ children }) => {
       if (res.status !== 400 || res.status !== 401) {
         setPopUpMsg(true)
         setSuccessMsg("Denied!")
+        setIsLoading(false);
       }
     } catch (err) {
+      setIsLoading(false);
       console.log(err.response.data);
       setErr(err.response.data);
     }
@@ -194,11 +200,13 @@ const Context = ({ children }) => {
           setPopup(false);
           setPopUpMsg(true)
           setSuccessMsg("Request Added!")
+          setIsLoading(false);
         } else {
           // setPopErr(res.data.name)
         }
       }
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   };

@@ -64,6 +64,7 @@ const LoginComponent = () => {
           <div className="my-3 flex justify-center lg:justify-start">
             <Button
               handleClick={handleClick}
+              type="submit"
               disabled={
                 !email ||
                 !password ||
