@@ -286,7 +286,7 @@ const Dashboard = () => {
               localStorage.clear();
               navigate("/");
             }}
-            className="hidden text-grey-400 lg:ml-6 mx-5 sm:flex gap-5 mt-40 lg:w-48 transition-all rounded-xl p-3 justify-center hover:bg-[#1C1BCB] cursor-pointer text-white bg-[#4a4ae4]"
+            className="hidden text-grey-400 lg:ml-6 mx-5 sm:flex gap-5 mt-64 lg:w-48 transition-all rounded-xl p-3 justify-center hover:bg-[#1C1BCB] cursor-pointer text-white bg-[#4a4ae4]"
           >
             <p className="text-base font-semibold hidden lg:flex">Logout</p>
             <div>

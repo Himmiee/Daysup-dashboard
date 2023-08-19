@@ -22,12 +22,12 @@ const Context = ({ children }) => {
   const [err, setErr] = useState("");
   const [loginErr, setLoginErr] = useState("");
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
-  let baseUrl = "https://daysup.onrender.com/";
+  let baseUrl = "https://daysup.onrender.com";
   let is_authenticated;
   const navigate = useNavigate();
   const RegisterUser = async () => {
     try {
-      const res = await axios.post("https://daysup.onrender.com/user/auth", {
+      const res = await axios.post(`${baseUrl}/user/auth`, {
         name,
         email,
         password,
@@ -52,7 +52,7 @@ const Context = ({ children }) => {
   };
   const RegisterStudents = async () => {
     try {
-      const res = await axios.post("https://daysup.onrender.com/addStudent", {
+      const res = await axios.post(`${baseUrl}/addStudent`, {
         name,
         email,
         regNumber,
@@ -61,6 +61,8 @@ const Context = ({ children }) => {
       if (res.status !== 400 || res.status !== 401) {
         console.log(res.data);
         setPopup(false);
+        setPopUpMsg(true)
+        setSuccessMsg("Student Created!")
         // dispatch({ type: "STUDENT_DETAILS", payload: res.data });
       }
     } catch (err) {
@@ -71,7 +73,7 @@ const Context = ({ children }) => {
 
   const UserLogin = async () => {
     try {
-      const res = await axios.post("https://daysup.onrender.com/user/login", {
+      const res = await axios.post(`${baseUrl}/user/login`, {
         email,
         password,
       });
@@ -100,7 +102,7 @@ const Context = ({ children }) => {
     try {
       const email = localStorage.getItem("email");
       const token = localStorage.getItem("token");
-      const res = await axios.get(`https://daysup.onrender.com/leave/${email}`, {
+      const res = await axios.get(`${baseUrl}/leave/${email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -114,14 +116,16 @@ const Context = ({ children }) => {
   const ApproveRequest = async () => {
     try {
       const res = await axios.put(
-        `https://daysup.onrender.com/updateLeaveStatus/${theId}`,
+        `${baseUrl}/updateLeaveStatus/${theId}`,
         {
           status: "completed",
         }
       );
 
       if (res.status !== 400 || res.status !== 401) {
-        console.log(res.data);
+        setPopUpMsg(true)
+        setSuccessMsg("Approved!")
+        // console.log(res.data);
       }
     } catch (err) {
       console.log(err.response.data);
@@ -131,11 +135,12 @@ const Context = ({ children }) => {
   const DeleteRequest = async () => {
     try {
       const res = await axios.delete(
-        `https://daysup.onrender.com/deleteLeave/${theId}`,
+        `${baseUrl}/deleteLeave/${theId}`,
       );
 
       if (res.status !== 400 || res.status !== 401) {
-        console.log(res.data);
+        setPopUpMsg(true)
+        setSuccessMsg("Denied!")
       }
     } catch (err) {
       console.log(err.response.data);
@@ -145,7 +150,7 @@ const Context = ({ children }) => {
   const leaveList = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`https://daysup.onrender.com/leaveList`, {
+      const res = await axios.get(`${baseUrl}/leaveList`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -160,7 +165,7 @@ const Context = ({ children }) => {
   const getStudents = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("https://daysup.onrender.com/users", {
+      const res = await axios.get(`${baseUrl}/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -177,7 +182,7 @@ const Context = ({ children }) => {
       const name = localStorage.getItem("name");
       const email = localStorage.getItem("email");
       console.log(name, email, leave);
-      const res = await axios.post("https://daysup.onrender.com/leave", {
+      const res = await axios.post(`${baseUrl}/leave`, {
         name: name,
         email: email,
         leave,
@@ -187,6 +192,8 @@ const Context = ({ children }) => {
         setPopErr("");
         if (!res.data.errors) {
           setPopup(false);
+          setPopUpMsg(true)
+          setSuccessMsg("Request Added!")
         } else {
           // setPopErr(res.data.name)
         }

@@ -17,6 +17,7 @@ const UsersComponent = () => {
     popup,
     popErr,
     setPopup,
+    setIsLoading,
     getStudents,
     RegisterStudents,
     state: { studentDetails },
@@ -27,6 +28,7 @@ const UsersComponent = () => {
   const is_admin = localStorage.getItem("is_admin");
   const admin = JSON.parse(is_admin);
   const handleToSubmit = () => {
+    setIsLoading(true);
     RegisterStudents();
     getStudents();
   };

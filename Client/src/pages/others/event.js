@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { ItemContext } from "../../context/store";
 import axios from "axios";
 import NavComponent from "../Dashboard/navbar";
-import { IoMdAddCircleOutline } from "react-icons/io";
+import { IoMdAddCircleOutline, IoIosArrowDown } from "react-icons/io";
 import { CiSaveUp1 } from "react-icons/ci";
 import { BsFilter, BsSearch, BsArrowDown, BsPlus } from "react-icons/bs";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { GrFormDown } from "react-icons/gr";
 import Button from "../../components/Button";
 import { AccordionMenu } from "../../utils/menu";
 import AccordionComponent from "../../components/Accordion";
@@ -23,6 +24,8 @@ const EventComponent = () => {
     leave,
     setTitle,
     setLeave,
+    setIsLoading,
+    isLoading,
     CreateAccordion,
     leaveList,
     state: { accordionDetails },
@@ -38,6 +41,7 @@ const EventComponent = () => {
     // console.log(accordionDetails);
   }, []);
   const handleToSubmit = () => {
+    setIsLoading(true)
     CreateAccordion();
     admin ? leaveList() : AccordionList();
   };
@@ -117,12 +121,23 @@ const EventComponent = () => {
           </div>
 
           <div className="tbl overflow-y-auto h-full my-1 sm:my-0 sm:h-[63vh] w-[96%]  mt-2 ">
-            <h2
-              className="font-bold text-[#3D3CC6] border-[#3d3cc6]  border-b-2 w-14
+            <div className="flex justify-between items-center gap-4">
+              <h2
+                className="font-bold text-[#3D3CC6] border-[#3d3cc6]  border-b-2 w-18
            mb-3 text-md"
-            >
-              Events
-            </h2>
+              >
+                All Events
+              </h2>
+              <div className="flex gap-1">
+                <h2
+                  className=" text-gray-300  
+           mb-3 text-[12px] items-center"
+                >
+                  Pending
+                </h2>
+                <IoIosArrowDown size={12} className="text-gray-300 mt-1 cursor-pointer" />
+              </div>
+            </div>
             <div className="tbl h-[95vh] overflow-y-auto">
               {accordionDetails
                 ?.filter((item) => {

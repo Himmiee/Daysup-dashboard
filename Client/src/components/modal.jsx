@@ -4,7 +4,7 @@ import { BsArrowDownCircle, BsX, BsCheckCircle } from "react-icons/bs";
 import { ItemContext } from "../context/store";
 const ModalComponent = (props) => {
   const { title, field, handleSubmit, onChange } = props;
-  const { popup, setPopup, popErr } = ItemContext();
+  const { popup, setPopup, popErr, isLoading,setIsLoading, } = ItemContext();
 
   return (
     <div className="overlap fixed z-10 inset-0 ">
@@ -50,7 +50,7 @@ const ModalComponent = (props) => {
             )}
             <div className="btn flex justify-center pt-3">
               <Button
-                title="submit"
+                title={isLoading ? '---' : 'submit'}
                 handleClick={handleSubmit}
                 className="w-24 text-white h-7 text-sm rounded-lg bg-[#a2a2e4] hover:bg-[#4343ac]"
               />
@@ -66,7 +66,7 @@ export default ModalComponent;
 
 export const StudentModal = (props) => {
   const { title, field, field2, field3, handleSubmit, onChange } = props;
-  const { popup, setPopup, setName, setEmail, setRegNumber, popErr } =
+  const { popup, setPopup, setName, setEmail, setRegNumber, popErr,isLoading } =
     ItemContext();
 
   return (
@@ -125,7 +125,7 @@ export const StudentModal = (props) => {
             </div>
             <div className="btn flex justify-center pt-3">
               <Button
-                title="submit"
+                title={isLoading ? '---' : 'submit'}
                 handleClick={handleSubmit}
                 className="w-24  text-white h-7 text-sm rounded-lg bg-[#a2a2e4] hover:bg-[#4343ac]"
               />
