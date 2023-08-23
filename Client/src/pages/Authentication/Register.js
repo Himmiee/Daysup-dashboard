@@ -72,7 +72,7 @@ const RegisterComponent = () => {
           <div>
             <p className="font-semibold text-[12px] sm:text-sm flex justify-center items-center lg:justify-start sm:grid">
               Student Information should be filled with student's registration
-              <br /> details and info accordingly.{" "}
+              details  <br /> and info accordingly.{" "}
             </p>
           </div>
 

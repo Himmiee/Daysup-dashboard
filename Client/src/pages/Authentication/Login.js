@@ -31,10 +31,10 @@ const LoginComponent = () => {
         <div className="logo absolute top-[30%] sm:top-[25%] lg:opacity-100 lg:relative lg:top-1 lg:left-0 lg:flex lg:justify-start  sm:opacity-50 opacity-20 sm:left-[48%] flex ml-14 lg:mb-3 lg:mt-12 ">
           <img src="../bare.png" className=" lg:w-24 w-96 lg:h-18" alt="" />
         </div>
-        <div className="lg:ml-20 absolute top-0 sm:top-64 lg:top-0  w-[100%] sm:w-[80%]  lg:relative sm:ml-16  mt-56 sm:mt-0 lg:mt-4 ">
-          <p className="font-semibold  text-[12px] sm:text-sm flex justify-center lg:justify-start sm:grid">
-            Student Information should be filled with student's registration
-            <br /> details and info accordingly.{" "}
+        <div className="lg:ml-20  absolute top-0 sm:top-64 lg:top-0  w-[100%] sm:w-[80%]  lg:relative sm:ml-16  mt-56 sm:mt-0 lg:mt-4 ">
+          <p className="font-semibold text-[12px] mx-auto sm:text-sm  sm:w-full flex justify-center lg:justify-start sm:grid">
+            Student Information should be filled with student's {" "}
+            registration details  <br />  and info accordingly.{" "}
           </p>
           <div className="flex justify-center lg:justify-start">
             <div className="wrap mt-3">

@@ -52,7 +52,7 @@ const ModalComponent = (props) => {
               <Button
                 title={isLoading ? '---' : 'submit'}
                 handleClick={handleSubmit}
-                className="w-24 text-white h-7 text-sm rounded-lg bg-[#a2a2e4] hover:bg-[#4343ac]"
+                className="w-24 text-white h-7 text-sm rounded-lg hover:bg-[#a2a2e4] bg-[#4343ac]"
               />
             </div>
           </div>
@@ -127,7 +127,7 @@ export const StudentModal = (props) => {
               <Button
                 title={isLoading ? '---' : 'submit'}
                 handleClick={handleSubmit}
-                className="w-24  text-white h-7 text-sm rounded-lg bg-[#a2a2e4] hover:bg-[#4343ac]"
+                className="w-24  text-white h-7 text-sm rounded-lg hover:bg-[#a2a2e4] bg-[#4343ac]"
               />
             </div>
           </div>
