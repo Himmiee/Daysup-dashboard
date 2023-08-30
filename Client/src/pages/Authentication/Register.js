@@ -69,10 +69,9 @@ const RegisterComponent = () => {
           <img src="../bare.png" className=" lg:w-24 w-96 lg:h-18" alt="" />
         </div>
         <div className="lg:ml-20  m-auto mt-56 sm:mt-64 lg:mt-4 ">
-          <div>
-            <p className="font-semibold text-[12px] sm:text-sm flex justify-center items-center lg:justify-start sm:grid">
-              Student Information should be filled with student's registration
-              details  <br /> and info accordingly.{" "}
+          <div className="w-full">
+            <p className="text-sm font-bold sm:text-sm flex justify-center lg:justify-start sm:grid">
+              Student Information.
             </p>
           </div>
 

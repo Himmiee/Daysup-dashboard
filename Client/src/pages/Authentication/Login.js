@@ -32,10 +32,11 @@ const LoginComponent = () => {
           <img src="../bare.png" className=" lg:w-24 w-96 lg:h-18" alt="" />
         </div>
         <div className="lg:ml-20  absolute top-0 sm:top-64 lg:top-0  w-[100%] sm:w-[80%]  lg:relative sm:ml-16  mt-56 sm:mt-0 lg:mt-4 ">
-          <p className="font-semibold text-[12px] mx-auto sm:text-sm  sm:w-full flex justify-center lg:justify-start sm:grid">
-            Student Information should be filled with student's {" "}
-            registration details  <br />  and info accordingly.{" "}
-          </p>
+        <div className="w-full">
+            <p className="text-sm font-bold sm:text-sm flex justify-center lg:justify-start sm:grid">
+              Student Information.
+            </p>
+          </div>
           <div className="flex justify-center lg:justify-start">
             <div className="wrap mt-3">
               <label className="font-bold ml-1 text-[12px]">

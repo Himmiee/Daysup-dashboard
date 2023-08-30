@@ -83,11 +83,11 @@ const MainComponent = () => {
               </ul>
             </div>
           </div>
-          <div className="my-3 sm:my-0 h-80  rounded-md bg-opacity-40 bg-[#dedefaa8] border-gray-100 border-[1px] ">
-            <p className="p-2 px-4 font-bold text-[16px]">Schedule</p>
-            <div className="opacity-20">
-              <img src="../bare.png" className="w-64 h-48 m-auto" alt="" />
-              <p className="flex justify-center font-medium text-sm text-[#6868c5]">Nothing Here yet!.</p>
+          <div className="my-3 sm:my-0 h-80  rounded-md  bg-[#dedefaa8] border-gray-100 border-[1px] ">
+            <p className="p-2 px-4 font-bold  text-gray-600 text-[16px]">Schedule</p>
+            <div className="">
+              <img src="../bare.png" className="w-64 opacity-20 h-48 m-auto" alt="" />
+              <p className="flex justify-center font-medium opacity-20  text-sm text-[#6868c5]">Nothing Here yet!.</p>
             </div>
           </div>
           <div className=" my-3 sm:my-0 h-80 shadow-sm rounded-md border-gray-100 border-[1px] ">
