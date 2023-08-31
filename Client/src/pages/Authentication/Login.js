@@ -15,6 +15,8 @@ const LoginComponent = () => {
     setPassword,
     setShowNav,
     loginErr,
+    popupMsg,
+    setPopUpMsg,
     UserLogin,
   } = ItemContext();
   const handleClick = () => {
@@ -24,6 +26,11 @@ const LoginComponent = () => {
   };
   useEffect(() => {
     setShowNav(false);
+    if (popupMsg === true) {
+      setTimeout(() => {
+        setPopUpMsg(false);
+      }, 3000);
+    }
   }, []);
   return (
     <section className="grid lg:flex max-h-full inter">
@@ -32,9 +39,9 @@ const LoginComponent = () => {
           <img src="../bare.png" className=" lg:w-24 w-96 lg:h-18" alt="" />
         </div>
         <div className="lg:ml-20  absolute top-0 sm:top-64 lg:top-0  w-[100%] sm:w-[80%]  lg:relative sm:ml-16  mt-56 sm:mt-0 lg:mt-4 ">
-        <div className="w-full">
+          <div className="w-full">
             <p className="text-sm font-bold sm:text-sm flex justify-center lg:justify-start sm:grid">
-              Student Information.
+              Student's Information.
             </p>
           </div>
           <div className="flex justify-center lg:justify-start">

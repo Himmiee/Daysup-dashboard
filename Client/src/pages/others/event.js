@@ -26,6 +26,8 @@ const EventComponent = () => {
     setLeave,
     setIsLoading,
     isLoading,
+    popupMsg,
+    setPopUpMsg,
     CreateAccordion,
     leaveList,
     state: { accordionDetails },
@@ -41,8 +43,11 @@ const EventComponent = () => {
     // console.log(accordionDetails);
   }, []);
   const handleToSubmit = () => {
-    setIsLoading(true)
+    setIsLoading(true);
     CreateAccordion();
+    setTimeout(() => {
+      setPopUpMsg(false);
+    }, 3000);
     admin ? leaveList() : AccordionList();
   };
 
@@ -135,7 +140,10 @@ const EventComponent = () => {
                 >
                   Pending
                 </h2>
-                <IoIosArrowDown size={12} className="text-gray-300 mt-1 cursor-pointer" />
+                <IoIosArrowDown
+                  size={12}
+                  className="text-gray-300 mt-1 cursor-pointer"
+                />
               </div>
             </div>
             <div className="tbl h-[95vh] overflow-y-auto">

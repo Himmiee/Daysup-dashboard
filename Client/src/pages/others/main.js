@@ -8,12 +8,24 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 
 const MainComponent = () => {
-  const { setShowNav, setShowHeader, showHeader, showNav } = ItemContext();
+  const {
+    setShowNav,
+    setShowHeader,
+    showHeader,
+    showNav,
+    popupMsg,
+    setPopUpMsg,
+  } = ItemContext();
   const [data, useData] = useState(tags);
   const [evt, useEvt] = useState(events);
   useEffect(() => {
     setShowNav(true);
     setShowHeader(true);
+    if (popupMsg === true) {
+      setTimeout(() => {
+        setPopUpMsg(false);
+      }, 3000);
+    }
   }, []);
   return (
     <section className="sm:w-[90%] overflow-hidden border-l-[1px]  border-gray-200 w-[100%] h-[91vh] sm:h-[100vh] inter lg:w-[82%] bg-[#ffffff] ">
@@ -84,10 +96,18 @@ const MainComponent = () => {
             </div>
           </div>
           <div className="my-3 sm:my-0 h-80  rounded-md  bg-[#dedefaa8] border-gray-100 border-[1px] ">
-            <p className="p-2 px-4 font-bold  text-gray-600 text-[16px]">Schedule</p>
+            <p className="p-2 px-4 font-bold  text-gray-600 text-[16px]">
+              Schedule
+            </p>
             <div className="">
-              <img src="../bare.png" className="w-64 opacity-20 h-48 m-auto" alt="" />
-              <p className="flex justify-center font-medium opacity-20  text-sm text-[#6868c5]">Nothing Here yet!.</p>
+              <img
+                src="../bare.png"
+                className="w-64 opacity-20 h-48 m-auto"
+                alt=""
+              />
+              <p className="flex justify-center font-medium opacity-20  text-sm text-[#6868c5]">
+                Nothing Here yet!.
+              </p>
             </div>
           </div>
           <div className=" my-3 sm:my-0 h-80 shadow-sm rounded-md border-gray-100 border-[1px] ">

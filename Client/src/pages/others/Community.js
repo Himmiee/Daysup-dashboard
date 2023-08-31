@@ -17,6 +17,8 @@ const UsersComponent = () => {
     popup,
     popErr,
     setPopup,
+    popupMsg,
+    setPopUpMsg,
     setIsLoading,
     getStudents,
     RegisterStudents,
@@ -31,12 +33,20 @@ const UsersComponent = () => {
     setIsLoading(true);
     RegisterStudents();
     getStudents();
+    if (popupMsg === true) {
+      setTimeout(() => {
+        setPopUpMsg(false);
+      }, 3000);
+    }
   };
   const [search, setSearch] = useState("");
   useEffect(() => {
     setShowNav(true);
     setShowHeader(true);
     getStudents();
+    setTimeout(() => {
+      setPopUpMsg(false);
+    }, 3000);
     // console.log(studentDetails);
   }, []);
   return (
