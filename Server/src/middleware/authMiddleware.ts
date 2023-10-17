@@ -53,10 +53,10 @@ export const verifyToken = async (
   let result;
 
   if (!authHeader) {
-      result = {
-        error: true,
-        message: "Access token not found",
-      };
+    result = {
+      error: true,
+      message: "Access token not found",
+    };
     return res.send(result);
   }
 
@@ -113,3 +113,28 @@ export const verifyAdmin = async (
     res.send("not authorised");
   }
 };
+
+const updateUserPasswordAndSalt = async (
+  userId: string,
+  newPasswordHash: string,
+  newSalt: string
+): Promise<any> => {
+  try {
+    const user = await getUsersById(userId);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    user.authentication.password = newPasswordHash;
+    user.authentication.salt = newSalt;
+
+    const updatedUser = await user.save();
+
+    return updatedUser;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { updateUserPasswordAndSalt };

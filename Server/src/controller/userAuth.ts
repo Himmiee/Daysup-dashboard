@@ -8,6 +8,7 @@ import {
   getUsersByMail,
   updatedUser,
 } from "../models/authSchema";
+import { updateUserPasswordAndSalt } from "../middleware/authMiddleware";
 import { random, authentication } from "../helpers";
 import { verify } from "../middleware/authMiddleware";
 import { tokenModel } from "../models/token";
@@ -144,10 +145,10 @@ export const addStudent = async (
     return res.status(400).send(result);
   }
   try {
-    const salt = random() 
+    const salt = random();
     const user = await getUsersByMail(email);
     if (user) return res.status(400).send("User already exists");
-    const checkRegNo = await getUserByRegNumber(regNumber)
+    const checkRegNo = await getUserByRegNumber(regNumber);
     if (checkRegNo) return res.status(400).send("RegNo already exists");
     const student = createStudent({
       name,
@@ -156,7 +157,7 @@ export const addStudent = async (
       authentication: {
         password: authentication(salt, password),
         salt,
-      }
+      },
     });
     return res.status(200).send("created successfully");
   } catch (err) {
@@ -168,37 +169,26 @@ export const resetPassword = async (
   req: express.Request,
   res: express.Response
 ) => {
-  const { email, password } = req.body;
-  const { id } = req.params;
-  const user = await getUsersById(id).select(
-    "+authentication.salt +authentication.password"
-  );
-  let result;
-
-  if (!email || !password) {
-    let result = {
-      error: true,
-      message: "Invalid Credentials",
-    };
-    return res.status(401).send(result);
-  }
-  if (!user) {
-    let result = {
-      error: true,
-      message: "User not found.",
-    };
-    return res.status(400).json(result);
-  }
   try {
-    const salt = random();
-    await UserModel.findByIdAndUpdate(
-      { _id: id },
-      {
-        password: authentication(salt, password),
-      }
-    );
-    return res.send("done");
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).send("Invalid input data");
+    }
+
+    const user = await getUsersByMail(email);
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    const newSalt = random();
+    const newPasswordHash = authentication(newSalt, password);
+
+    await updateUserPasswordAndSalt(user.id, newPasswordHash, newSalt);
+
+    return res.status(200).send("Password reset successfully");
   } catch (err) {
-    console.log(err);
+    return res.status(500).send("Internal server error");
   }
 };

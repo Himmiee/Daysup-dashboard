@@ -71,7 +71,8 @@ const RegisterComponent = () => {
         <div className="lg:ml-20  m-auto mt-56 sm:mt-64 lg:mt-4 ">
           <div className="w-full">
             <p className="text-sm font-bold sm:text-sm flex justify-center lg:justify-start sm:grid">
-              Student's Information.
+       
+            Student's Information and details below.
             </p>
           </div>
 

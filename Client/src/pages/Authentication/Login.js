@@ -41,7 +41,7 @@ const LoginComponent = () => {
         <div className="lg:ml-20  absolute top-0 sm:top-64 lg:top-0  w-[100%] sm:w-[80%]  lg:relative sm:ml-16  mt-56 sm:mt-0 lg:mt-4 ">
           <div className="w-full">
             <p className="text-sm font-bold sm:text-sm flex justify-center lg:justify-start sm:grid">
-              Student's Information.
+              Student's Information and details below.
             </p>
           </div>
           <div className="flex justify-center lg:justify-start">

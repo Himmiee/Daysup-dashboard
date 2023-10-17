@@ -4,6 +4,7 @@ import {
   BsCalendarEventFill,
   BsCalendarEvent,
 } from "react-icons/bs";
+import { useState, useEffect } from "react";
 import { HiUserGroup, HiOutlineUserGroup } from "react-icons/hi";
 import { IoMdNotificationsOutline, IoMdNotifications } from "react-icons/io";
 import { RiSettings5Fill, RiSettings5Line } from "react-icons/ri";
@@ -11,6 +12,10 @@ import { RiSettings5Fill, RiSettings5Line } from "react-icons/ri";
 export default function cn(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+
+
+
+
 export const Menu = [
   {
     label: "Dashboard",
@@ -133,21 +138,21 @@ export const Months = [
   "September",
   "October",
   "November",
-  "December"
-]
+  "December",
+];
 
 export const tags = [
-  {name:"Sciences",tag:"view brochure"},
-  {name:"Engineering", tag:"view brochure"},
-  {name:"Art", tag:"view brochure"},
-  {name:"Social Sciences", tag:"view brochure"},
-  {name:"Education", tag:"view brochure"}
-]
+  { name: "Sciences", tag: "view brochure" },
+  { name: "Engineering", tag: "view brochure" },
+  { name: "Art", tag: "view brochure" },
+  { name: "Social Sciences", tag: "view brochure" },
+  { name: "Education", tag: "view brochure" },
+];
 
 export const events = [
-  {name:"Science Class Intro",date:"23rd March, 2023"},
-  {name:"Engineering Class Intro", date:"24th March, 2023"},
-  {name:"Art Class Intro", date:"25th March, 2023"},
-  {name:"Social Sciences Intro", date:"1st April,2023"},
-  {name:"Education Class Inro", date:"2nd April, 2023"},
-]
+  { name: "Science Class Intro", date: "23rd March, 2023" },
+  { name: "Engineering Class Intro", date: "24th March, 2023" },
+  { name: "Art Class Intro", date: "25th March, 2023" },
+  { name: "Social Sciences Intro", date: "1st April,2023" },
+  { name: "Education Class Inro", date: "2nd April, 2023" },
+];

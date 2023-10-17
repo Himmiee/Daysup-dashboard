@@ -1,5 +1,6 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { useScrollDirection } from 'react-use-scroll-direction'
 import { ItemContext } from "./context/store";
 import Dashboard from "./pages/Dashboard/dashboard";
 import NavComponent from "./pages/Dashboard/navbar";
@@ -14,9 +15,14 @@ import RegisterComponent from "./pages/Authentication/Register";
 import LoginComponent from "./pages/Authentication/Login";
 import { PopupModalComponent } from "./components/modal";
 
+
 const AppRouter = () => {
+  const [show, setShow] = useState(true);
   const { showNav, popErr, popupMsg, successMsg } = ItemContext();
   const location = useLocation();
+
+
+
 
   let name = "Daysup";
 
@@ -37,9 +43,13 @@ const AppRouter = () => {
   return (
     <section>
       <div className="">
-        <div className={showNav ? "flex" : ""}>
+        <div className={showNav ? "sm:flex" : ""}>
           {popupMsg ? <PopupModalComponent /> : " "}
-          {showNav && <Dashboard />}
+          {showNav && (
+            <div>
+              <Dashboard />
+            </div>
+          )}
           {/* <Suspense fallback={<LoaderComponent />}> */}
           {/* {showNav && <Dashboard />} */}
           <Routes location={location}>

@@ -3,6 +3,7 @@ import { ItemContext } from "../../context/store";
 import NavComponent from "../Dashboard/navbar";
 import CardComponent from "../../components/card";
 import { tags, events } from "../../utils/menu";
+import { useScrollDirection } from "react-use-scroll-direction";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -16,6 +17,7 @@ const MainComponent = () => {
     popupMsg,
     setPopUpMsg,
   } = ItemContext();
+
   const [data, useData] = useState(tags);
   const [evt, useEvt] = useState(events);
   useEffect(() => {
@@ -28,9 +30,11 @@ const MainComponent = () => {
     }
   }, []);
   return (
-    <section className="sm:w-[90%] overflow-hidden border-l-[1px]  border-gray-200 w-[100%] h-[91vh] sm:h-[100vh] inter lg:w-[82%] bg-[#ffffff] ">
+    <section className="sm:w-[90%] overflow-hidden  border-l-[1px]  border-gray-200 w-[100%] h-[98vh] sm:h-[100vh] inter lg:w-[82%] bg-[#ffffff] ">
       {showHeader && <NavComponent />}
-      <div className="px-8">
+      <div
+        className="px-8  overflow-y-auto tbl"
+      >
         <div className="wrap   from-[#3D3CC6] to-gray-400 bg-gradient-to-tr w-full h-40 my-3 rounded-md">
           <img
             src="../bg.jpg"
@@ -71,7 +75,7 @@ const MainComponent = () => {
             />
           </div>
         </div>
-        <div className="bottom tbl my-2 overflow-y-auto mt-5 sm:mt-2 h-80  grid-cols 1 grid sm:grid-cols-2 lg:grid-cols-3 sm:h-[340px] sm:gap-6 ">
+        <div className="bottom tbl my-2  mt-5 sm:mt-2 h-80  grid-cols 1 grid sm:grid-cols-2 lg:grid-cols-3 sm:h-[340px] sm:gap-6 ">
           <div className="my-3 sm:my-0 h-80 shadow-sm rounded-md border-gray-100 border-[1px] ">
             <p className="p-2 px-4 font-bold text-[16px]">Events</p>
             <div className="px-4 ">
