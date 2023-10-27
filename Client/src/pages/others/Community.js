@@ -155,7 +155,7 @@ const UsersComponent = () => {
                   <th></th>
                 </tr>
               </thead>
-              <tbody className="">
+        
                 <div
                   id="scroll"
                   className="tbl h-[410px] mt-2  overflow-y-auto"
@@ -168,6 +168,7 @@ const UsersComponent = () => {
                     })
                     .map((item, index) => {
                       return (
+                        
                         <tr className="flex  border-gray-200 border-b-[1px] bg-white w-full justify-between text-[12px] text-gray-400 h-10 items-center px-5 ">
                           {" "}
                           <td className="h-10 w-24 flex items-center justify-start">
@@ -193,7 +194,7 @@ const UsersComponent = () => {
                       );
                     })}
                 </div>
-              </tbody>
+             
             </table>
             {!studentDetails.length && (
               <div className="absolute left-[38%] top-[40%]">

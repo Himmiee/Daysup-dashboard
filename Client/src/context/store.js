@@ -15,7 +15,7 @@ const Context = ({ children }) => {
   const [theId, setTheId] = useState("");
   const [popupMsg, setPopUpMsg] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
-  const [errMsg,setErrMessage] = useState("");
+  const [errMsg, setErrMessage] = useState("");
   const [leave, setLeave] = useState("");
   const [showNav, setShowNav] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
@@ -40,10 +40,10 @@ const Context = ({ children }) => {
         setErr(" ");
         dispatch({ type: "USER_DETAILS", payload: res.data });
         navigate("/");
-        setPopUpMsg(true)
-        setSuccessMsg("User Created Successfully")
+        setPopUpMsg(true);
+        setSuccessMsg("User Created Successfully");
         setIsLoading(false);
-       }
+      }
     } catch (err) {
       setIsLoading(false);
       console.log(err.response.data);
@@ -61,8 +61,8 @@ const Context = ({ children }) => {
       if (res.status !== 400 || res.status !== 401) {
         console.log(res.data);
         setPopup(false);
-        setPopUpMsg(true)
-        setSuccessMsg("Student Created!")
+        setPopUpMsg(true);
+        setSuccessMsg("Student Created!");
         setIsLoading(false);
         // dispatch({ type: "STUDENT_DETAILS", payload: res.data });
       }
@@ -89,10 +89,9 @@ const Context = ({ children }) => {
         localStorage.setItem("is_authenticated", true);
         dispatch({ type: "LOGIN_DETAILS", payload: res?.data });
         navigate("/main");
-        setPopUpMsg(true)
-        setSuccessMsg("User login Successful")
+        setPopUpMsg(true);
+        setSuccessMsg("User login Successful");
         setIsLoading(false);
-
       }
     } catch (err) {
       setIsLoading(false);
@@ -117,16 +116,13 @@ const Context = ({ children }) => {
   };
   const ApproveRequest = async () => {
     try {
-      const res = await axios.put(
-        `${baseUrl}/updateLeaveStatus/${theId}`,
-        {
-          status: "completed",
-        }
-      );
+      const res = await axios.put(`${baseUrl}/updateLeaveStatus/${theId}`, {
+        status: "completed",
+      });
 
       if (res.status !== 400 || res.status !== 401) {
-        setPopUpMsg(true)
-        setSuccessMsg("Approved!")
+        setPopUpMsg(true);
+        setSuccessMsg("Approved!");
         setIsLoading(false);
         // console.log(res.data);
       }
@@ -136,15 +132,35 @@ const Context = ({ children }) => {
       setErr(err.response.data);
     }
   };
-  const DeleteRequest = async () => {
+  const UpdatePassword = async () => {
     try {
-      const res = await axios.delete(
-        `${baseUrl}/deleteLeave/${theId}`,
+      const res = await axios.put(
+        `${baseUrl}/passwordReset/${email}`,
+        {
+          email: email,
+          password: password,
+        }
       );
 
       if (res.status !== 400 || res.status !== 401) {
-        setPopUpMsg(true)
-        setSuccessMsg("Denied!")
+        setPopUpMsg(true);
+        setSuccessMsg("Password Updated Successfully!");
+        setIsLoading(false);
+        console.log(res.data);
+      }
+    } catch (err) {
+      setIsLoading(false);
+      console.log(err.response.data);
+      setErr(err.response.data);
+    }
+  };
+  const DeleteRequest = async () => {
+    try {
+      const res = await axios.delete(`${baseUrl}/deleteLeave/${theId}`);
+
+      if (res.status !== 400 || res.status !== 401) {
+        setPopUpMsg(true);
+        setSuccessMsg("Denied!");
         setIsLoading(false);
       }
     } catch (err) {
@@ -162,7 +178,7 @@ const Context = ({ children }) => {
         },
       });
       dispatch({ type: "ACCORDION_MENU", payload: res.data });
-      console.log(res.data);
+      // console.log(res.data);
     } catch (err) {
       console.log(err.response.data);
     }
@@ -187,7 +203,7 @@ const Context = ({ children }) => {
     try {
       const name = localStorage.getItem("name");
       const email = localStorage.getItem("email");
-      console.log(name, email, leave);
+      // console.log(name, email, leave);
       const res = await axios.post(`${baseUrl}/leave`, {
         name: name,
         email: email,
@@ -198,8 +214,8 @@ const Context = ({ children }) => {
         setPopErr("");
         if (!res.data.errors) {
           setPopup(false);
-          setPopUpMsg(true)
-          setSuccessMsg("Request Added!")
+          setPopUpMsg(true);
+          setSuccessMsg("Request Added!");
           setIsLoading(false);
         } else {
           // setPopErr(res.data.name)
@@ -256,7 +272,8 @@ const Context = ({ children }) => {
         successMsg,
         setSuccessMsg,
         errMsg,
-        setErrMessage
+        UpdatePassword,
+        setErrMessage,
       }}
     >
       {children}

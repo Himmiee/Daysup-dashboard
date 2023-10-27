@@ -5,6 +5,7 @@ import { SettingsMenu } from "../../utils/menu";
 import { RiEdit2Line } from "react-icons/ri";
 import { BsFilter, BsSearch, BsArrowDown } from "react-icons/bs";
 import InputComponent from "../../components/inputComponent";
+import Button from "../../components/Button";
 
 const SettingsComponent = () => {
   const {
@@ -14,12 +15,32 @@ const SettingsComponent = () => {
     setEmail,
     setPassword,
     setRegNumber,
+    setPopup,
+    password,
+    popupMsg,
+    setPopUpMsg,
+    setIsLoading,
+    UpdatePassword,
+    state: { loginDetails },
   } = ItemContext();
   const [data, setData] = useState(SettingsMenu);
-
+  const [active, setActive] = useState(false);
+  const [editBtn, showEditBtn] = useState(false);
+  const handleToSubmit = () => {
+    setIsLoading(true);
+    UpdatePassword();
+    if (popupMsg === true) {
+      setTimeout(() => {
+        setPopUpMsg(false);
+      }, 3000);
+    }
+  };
   useEffect(() => {
     setShowNav(true);
     setShowHeader(true);
+    setTimeout(() => {
+      setPopUpMsg(false);
+    }, 3000);
   }, []);
   return (
     <section className="sm:w-[90%] border-l-[1px] border-gray-200 w-[100%] inter lg:w-[82%] bg-[#ffffff] ">
@@ -55,9 +76,8 @@ const SettingsComponent = () => {
           <p className="text-[12px] font-bolsd text-gray-400">
             You can change and decide to change nd decide to change your account
             details nd decide to change your account details your account
-            details nd decide to nd decide to change your account details
-            nd decide to change your account details from this section right
-            here.
+            details nd decide to nd decide to change your account details nd
+            decide to change your account details from this section right here.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 my-4">
             <label className="lg:w-[412px] w-[320px]  sm:w-[300px]  font-bold ml-1 text-[12px]">
@@ -76,15 +96,28 @@ const SettingsComponent = () => {
             <label className="font-bold lg:w-[412px] w-[320px]  sm:w-[300px]  ml-1 text-[12px]">
               <div className="flex  justify-between item-center">
                 <p>Password:</p>
-                <RiEdit2Line className="text-gray-400 cursor-pointer" />
+                <RiEdit2Line
+                  // onClick={() => setActive(!active)}
+                  className="text-gray-400 cursor-pointer"
+                />
               </div>
               <InputComponent
+                value={loginDetails.password}
                 handleChange={(e) => {
                   setPassword(e.target.value);
                 }}
                 name="password"
                 className=""
+                type="password"
               />
+              {active ? (
+                <div
+                  onClick={handleToSubmit}
+                  className=" w-12 h-8 cursor-pointer rounded-lg ml-auto hover:bg-gray-600 flex justify-center item-center p-2 bg-black text-white"
+                >
+                  <p>{password.length > 5 ? "Save" : "X"}</p>
+                </div>
+              ) : null}
             </label>
             <label className="font-bold lg:w-[412px] w-[320px]  sm:w-[300px]  ml-1 text-[12px] sm:my-4">
               <div className="flex  justify-between item-center">

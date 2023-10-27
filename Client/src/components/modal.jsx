@@ -4,7 +4,7 @@ import { BsArrowDownCircle, BsX, BsCheckCircle } from "react-icons/bs";
 import { ItemContext } from "../context/store";
 const ModalComponent = (props) => {
   const { title, field, handleSubmit, onChange } = props;
-  const { popup, setPopup, popErr, isLoading,setIsLoading, } = ItemContext();
+  const { popup, setPopup, popErr, isLoading,setIsLoading,  leaveList, AccordionList} = ItemContext();
 
   return (
     <div className="overlap fixed z-10 inset-0 ">

@@ -9,6 +9,6 @@ export default  (router: express.Router) => {
     router.post('/admin/auth', registerAdmin)
     router.post('/user/login',userLogin)
     router.post('/addStudent',addStudent)
-    router.put('/passwordReset/:id',resetPassword )
+    router.put('/passwordReset/:email',resetPassword )
 
 }

@@ -45,10 +45,10 @@ const EventComponent = () => {
   const handleToSubmit = () => {
     setIsLoading(true);
     CreateAccordion();
+    admin ? leaveList() : AccordionList();
     setTimeout(() => {
       setPopUpMsg(false);
     }, 3000);
-    admin ? leaveList() : AccordionList();
   };
 
   return (

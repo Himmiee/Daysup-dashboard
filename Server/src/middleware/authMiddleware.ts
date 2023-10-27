@@ -115,12 +115,12 @@ export const verifyAdmin = async (
 };
 
 const updateUserPasswordAndSalt = async (
-  userId: string,
+  userMail: string,
   newPasswordHash: string,
   newSalt: string
 ): Promise<any> => {
   try {
-    const user = await getUsersById(userId);
+    const user = await getUsersByMail(userMail);
 
     if (!user) {
       throw new Error("User not found");

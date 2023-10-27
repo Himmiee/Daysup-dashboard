@@ -20,21 +20,46 @@ const MainComponent = () => {
 
   const [data, useData] = useState(tags);
   const [evt, useEvt] = useState(events);
+ 
+ 
+  const [prevScrollY, setPrevScrollY] = useState(0);
+  const [scrollingDown, setScrollingDown] = useState(true);
+
   useEffect(() => {
-    setShowNav(true);
     setShowHeader(true);
+    setShowNav(true);
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > prevScrollY) {
+        setScrollingDown(true);
+      } else {
+        setScrollingDown(false);
+      }
+
+      setPrevScrollY(currentScrollY);
+      setShowNav(scrollingDown);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
     if (popupMsg === true) {
       setTimeout(() => {
         setPopUpMsg(false);
       }, 3000);
     }
-  }, []);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollY, scrollingDown, popupMsg, setPopUpMsg, setShowHeader]);
+
+  
   return (
     <section className="sm:w-[90%] overflow-hidden  border-l-[1px]  border-gray-200 w-[100%] h-[98vh] sm:h-[100vh] inter lg:w-[82%] bg-[#ffffff] ">
-      {showHeader && <NavComponent />}
-      <div
-        className="px-8  overflow-y-auto tbl"
-      >
+      {showHeader && <NavComponent/>}
+      <div className="px-8  overflow-y-auto tbl">
         <div className="wrap   from-[#3D3CC6] to-gray-400 bg-gradient-to-tr w-full h-40 my-3 rounded-md">
           <img
             src="../bg.jpg"
@@ -106,7 +131,7 @@ const MainComponent = () => {
             <div className="">
               <img
                 src="../bare.png"
-                className="w-64 opacity-20 h-48 m-auto"
+                className="w-64 opacity-10 h-48 m-auto"
                 alt=""
               />
               <p className="flex justify-center font-medium opacity-20  text-sm text-[#6868c5]">

@@ -185,7 +185,7 @@ export const resetPassword = async (
     const newSalt = random();
     const newPasswordHash = authentication(newSalt, password);
 
-    await updateUserPasswordAndSalt(user.id, newPasswordHash, newSalt);
+    await updateUserPasswordAndSalt(email, newPasswordHash, newSalt);
 
     return res.status(200).send("Password reset successfully");
   } catch (err) {
