@@ -130,7 +130,7 @@ const LoginComponent = () => {
             </h2>
             <p className="text-white italic font-normal text-sm">
               Youth obey the clarion call, <br />
-              Let's all us assume what i wrote makes <br />
+              Let's us lift our nation higher <br />
               total sense.
             </p>
             <div className="pointer grid grid-flow-col my-7 w-64 ">
