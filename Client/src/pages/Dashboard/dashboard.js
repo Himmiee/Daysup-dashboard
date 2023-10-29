@@ -84,7 +84,7 @@ const Dashboard = () => {
                         : "text-sm lg:text-gray-400 text-[#1b1bcb54]"
                     }
                   >
-                    {menuItem.icon}
+                    {activeIndex === index ? menuItem.filled : menuItem.icon}
                   </div>
                   <p
                     className={
