@@ -21,7 +21,6 @@ const LoginComponent = () => {
   } = ItemContext();
   const handleClick = () => {
     setIsLoading(true);
-    console.log("dey play.");
     UserLogin();
   };
   useEffect(() => {

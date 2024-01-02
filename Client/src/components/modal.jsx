@@ -151,7 +151,7 @@ export const PopupModalComponent = (props) => {
       <div className="bg-gray-100 m-3 gap-2 flex ml-auto justify-end border-[#4343ac] border-l-4  w-64 h-12">
         <div className="flex w-full justify-center items-center gap-2">
           <BsCheckCircle className="text-[#4343ac]" />
-          <p className="text-sm">{successMsg}</p>
+          <p className="text-sm">Success</p>
         </div>
 
         <BsX

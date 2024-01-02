@@ -108,14 +108,21 @@ const SettingsComponent = () => {
                 }}
                 name="password"
                 className=""
-                type="password"
+                type=""
               />
               {active ? (
-                <div
-                  onClick={handleToSubmit}
-                  className=" w-12 h-8 cursor-pointer rounded-lg ml-auto hover:bg-gray-600 flex justify-center item-center p-2 bg-black text-white"
-                >
-                  <p>{password.length > 5 ? "Save" : "X"}</p>
+                <div onClick={handleToSubmit}>
+                  <p>
+                    {password.length > 5 ? (
+                      <div className=" w-12 h-8 cursor-pointer rounded-lg ml-auto hover:bg-gray-600 flex justify-center item-center p-2 bg-black text-white">
+                        save
+                      </div>
+                    ) : (
+                      <div className=" w-12 h-8 cursor-pointer rounded-lg ml-auto bg-gray-100 flex justify-center item-center p-2  text-gray-200">
+                        Save
+                      </div>
+                    )}
+                  </p>
                 </div>
               ) : null}
             </label>

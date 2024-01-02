@@ -19,7 +19,7 @@ const InputComponent = (props) => {
       />
       {type === "password" && (
         <button
-          className="text-gray-600 absolute left-[320px] sm:left-[379px] top-[18px]"
+          className="text-gray-600 absolute left-[310px] sm:left-[379px] top-[18px]"
           onClick={() => {
             inputRef.current.type === "password"
               ? (inputRef.current.type = "text")

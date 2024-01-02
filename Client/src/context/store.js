@@ -70,6 +70,9 @@ const Context = ({ children }) => {
       setIsLoading(false);
       console.log(err.response.data);
       setErr(err.response.data);
+      setTimeout(() => {
+        setErr("");
+      }, 3000);
     }
   };
 
@@ -80,7 +83,7 @@ const Context = ({ children }) => {
         password,
       });
       if (res.status !== 400 || res.status !== 401) {
-        console.log(res.data);
+        // console.log(res.data);
         setLoginErr(" ");
         localStorage.setItem("email", res?.data.email);
         localStorage.setItem("name", res?.data.name);
@@ -97,6 +100,9 @@ const Context = ({ children }) => {
       setIsLoading(false);
       console.log(err.response.data);
       setLoginErr(err.response.data);
+      setTimeout(() => {
+        setLoginErr("");
+      }, 3000);
     }
   };
   const AccordionList = async () => {
@@ -134,13 +140,10 @@ const Context = ({ children }) => {
   };
   const UpdatePassword = async () => {
     try {
-      const res = await axios.put(
-        `${baseUrl}/passwordReset/${email}`,
-        {
-          email: email,
-          password: password,
-        }
-      );
+      const res = await axios.put(`${baseUrl}/passwordReset/${email}`, {
+        email: email,
+        password: password,
+      });
 
       if (res.status !== 400 || res.status !== 401) {
         setPopUpMsg(true);
