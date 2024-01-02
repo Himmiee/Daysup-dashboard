@@ -48,6 +48,9 @@ const Context = ({ children }) => {
       setIsLoading(false);
       console.log(err.response.data);
       setErr(err.response.data);
+      setTimeout(() => {
+        setErr("");
+      }, 3000);
     }
   };
   const RegisterStudents = async () => {

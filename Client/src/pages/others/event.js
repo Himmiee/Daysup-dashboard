@@ -36,12 +36,6 @@ const EventComponent = () => {
   const is_admin = localStorage.getItem("is_admin");
   const admin = JSON.parse(is_admin);
 
-  useEffect(() => {
-    setShowNav(true);
-    setShowHeader(true);
-    admin ? leaveList() : AccordionList();
-    // console.log(accordionDetails);
-  }, []);
   const handleToSubmit = () => {
     setIsLoading(true);
     CreateAccordion();
@@ -50,7 +44,12 @@ const EventComponent = () => {
       setPopUpMsg(false);
     }, 3000);
   };
-
+  useEffect(() => {
+    setShowNav(true);
+    setShowHeader(true);
+    admin ? leaveList() : AccordionList();
+    // console.log(accordionDetails);
+  }, [handleToSubmit]);
   return (
     <section className="sm:w-[90%] overflow-hidden border-l-[1px] h-[88vh] sm:h-full  border-gray-200 w-full  inter lg:w-[82%] bg-[#ffffff] ">
       {popup && (

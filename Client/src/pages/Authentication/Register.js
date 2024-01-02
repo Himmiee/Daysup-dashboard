@@ -134,7 +134,7 @@ const RegisterComponent = () => {
                 !email.includes("@") ||
                 !email.includes(".")
               }
-              title={isLoading ? "Signing..." : "SignIn"}
+              title={isLoading ? "Signing..." : "SignUp"}
               className={
                 isLoading
                   ? "bg-[#3c3cc6d7]  text-gray-300   w-[350px] sm:w-[415px] rounded-lg h-9 "
